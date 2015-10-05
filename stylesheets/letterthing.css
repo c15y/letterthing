@@ -1,0 +1,9 @@
+.lt-logo{
+  transition: 0.7s;
+}
+
+.lt-logo:hover{
+   -webkit-transform: scale(1.5);
+    -moz-transform: scale(1.5);
+    -o-transform: scale(1.5);
+}
