@@ -7,3 +7,9 @@
     -moz-transform: scale(1.5);
     -o-transform: scale(1.5);
 }
+
+img.centered {
+    display: block;
+    margin-left: auto;
+    margin-right: auto
+}
