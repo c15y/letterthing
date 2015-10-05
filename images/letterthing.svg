@@ -1,0 +1,10 @@
+<svg class="lt-logo" width="146" height="88" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
+ <g>
+    <title>Letter Thing</title>
+    <rect ry="3" rx="3" stroke="black" id="svg_2" height="83" width="141" y="2.5" x="2.5" fill-opacity="0" stroke-linecap="null" stroke-dasharray="null" stroke-width="5" fill="white"/>
+    <line stroke="black" id="svg_7" y2="37.5" x2="73.5" y1="4.3" x1="2.5" fill-opacity="0" stroke-dasharray="null" stroke-width="4" fill="none"/>
+    <line stroke="black" id="svg_8" y2="37.5" x2="72" y1="4.3" x1="143.5" fill-opacity="0" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="4" fill="none"/>
+    <text stroke="black" xml:space="preserve" text-anchor="middle" font-family="serif" font-size="24" id="svg_5" y="70" x="73" stroke-linecap="null" stroke-dasharray="null" stroke-width="0" fill="black">Letter Thing</text>
+    <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="24" id="svg_12" y="26" x="72.5" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="0" stroke="black" fill="black">?</text>
+ </g>
+</svg>
