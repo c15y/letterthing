@@ -13,7 +13,7 @@ module.exports = {
   },
   hostname: 'http://localhost:3000',
   app: {
-    name: 'MEAN - A Modern Stack - Development'
+    name: 'Letter Thing - Development'
   },
   strategies: {
     local: {
@@ -58,6 +58,6 @@ module.exports = {
       user: 'EMAIL_ID',
       pass: 'PASSWORD'
     }
-  }, 
+  },
   secret: 'SOME_TOKEN_SECRET'
 };
