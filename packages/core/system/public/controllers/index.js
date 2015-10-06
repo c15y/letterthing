@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('mean.system').controller('IndexController', ['$scope', 'Global',
+angular.module('mean.system', ['cwill747.phonenumber']).controller('IndexController', ['$scope', 'Global',
   function($scope, Global) {
     $scope.global = Global;
     $scope.sites = {
@@ -54,5 +54,7 @@ angular.module('mean.system').controller('IndexController', ['$scope', 'Global',
         console.log('currentSlide:', currentSlide);
       }
     });
+
+    $scope.initializedPhoneNumber = '3133536767';
   }
 ]);
