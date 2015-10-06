@@ -107,6 +107,15 @@ var toMSC = function(phone) {
     return phone.toString().replace(/[^0-9\.]+/g, '');
 };
 
-app.filter('MSC', function() {
-  return toMSC;
+app.filter('validMSC', function() {
+
+    return function(phone) {
+        var msc = toMSC(phone);
+
+        if (msc.length != 10) {
+            return '';
+        }
+
+        return msc;
+    };
 });
