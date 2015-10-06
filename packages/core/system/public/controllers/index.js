@@ -57,7 +57,7 @@ app.controller('IndexController', ['$scope', '$filter', 'Global',
       }
     });
 
-    $scope.PhoneNumber = $filter("tel")(5419754290);
+    $scope.PhoneNumber = $filter("tel")();
   }
 ]);
 
