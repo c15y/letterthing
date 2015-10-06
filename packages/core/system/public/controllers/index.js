@@ -84,13 +84,12 @@ app.filter('phone', function () {
             case 10:
                 area = value.slice(0, 3);
                 number = value.slice(3);
+                number = number.slice(0, 3) + '-' + number.slice(3);
                 break;
 
             default:
                 return phone;
         }
-
-        number = number.slice(0, 3) + '-' + number.slice(3);
 
         return ("(" + area + ") " + number).trim();
     };
