@@ -4,8 +4,8 @@
   </div>
   <div class="col-md-12 row">
     <div>
-        <input type="text" data-ng-model="MSC" id="MSC" name="MSC" class="form-control" ng-keypress="onlyDigits($event)" />
-        {{ MSC | phone }}
+        <input type="text" id="Phone" name="Phone" class="form-control" data-ng-model="Phone" data-ng-keypress="phoneOnly($event)" />
+        <h2>MSC {{ Phone | MSC }}<h2>
     </div>
   </div>
 </section>

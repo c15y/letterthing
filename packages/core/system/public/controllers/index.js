@@ -2,8 +2,8 @@
 
 var app = angular.module('mean.system');
 
-app.controller('IndexController', ['$scope', '$filter', 'Global',
-  function($scope, $filter, Global) {
+app.controller('IndexController', ['$scope', 'Global',
+  function($scope, Global) {
     $scope.global = Global;
     $scope.sites = {
       'makeapoint':{
@@ -59,38 +59,54 @@ app.controller('IndexController', ['$scope', '$filter', 'Global',
 
     $scope.MSC = 5557771234;
 
-    $scope.onlyDigits = function($event){
-        if(isNaN(String.fromCharCode($event.keyCode)) || $event.currentTarget.value.length == 10){
+    $scope.phoneOnly = function($event) {
+
+        var key = String.fromCharCode($event.keyCode);
+
+        if (isNaN(key)) {
             $event.preventDefault();
+            return;
         }
+
+        var value = toMSC($event.currentTarget.value);
+
+        var msc = toMSC(value + key);
+
+        if (msc.length > 10){
+            $event.preventDefault();
+            return;
+        }
+
+        $event.currentTarget.value = toPhone(value);
     };
   }
 ]);
 
-app.filter('phone', function () {
-    return function (phone) {
+var toPhone = function (msc) {
 
-        if (!phone) { return ''; }
+    if (!msc) { return ''; }
 
-        var value = phone.toString().trim().replace(/^\+/, '');
+    var area = msc.slice(0, 3);
+    var number = msc.slice(3);
 
-        if (value.match(/[^0-9]/)) {
-            return phone;
-        }
+    if (area.length == 3) {
+      area = "(" + area + ") ";
+    }
 
-        var area, number;
+    if (number.length >= 3) {
+      number = number.slice(0, 3) + '-' + number.slice(3);
+    }
 
-        switch (value.length) {
-            case 10:
-                area = value.slice(0, 3);
-                number = value.slice(3);
-                number = number.slice(0, 3) + '-' + number.slice(3);
-                break;
+    return area + number;
+};
 
-            default:
-                return phone;
-        }
+var toMSC = function(phone) {
 
-        return ("(" + area + ") " + number).trim();
-    };
+    if (!phone) { return ''; }
+
+    return phone.toString().replace(/[^0-9\.]+/g, '');
+};
+
+app.filter('MSC', function() {
+  return toMSC;
 });
