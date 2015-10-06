@@ -13,6 +13,6 @@
     "web-bootstrap": "./node_modules/meanio/resources/web-bootstrap.js",
     "angular-ui-select": "latest",
     "angular-sanitize": "latest",
-    "phoneformat.js": "latest"
+    "angular-libphonenumber": "~0.0.7"
   }
 }

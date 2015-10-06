@@ -1,9 +1,7 @@
 'use strict';
 
-var app = angular.module('mean.system');
-
-app.controller('IndexController', ['$scope', '$filter', 'Global',
-  function($scope, $filter, Global) {
+angular.module('mean.system', ['cwill747.phonenumber']).controller('IndexController', ['$scope', 'Global',
+  function($scope, Global) {
     $scope.global = Global;
     $scope.sites = {
       'makeapoint':{
@@ -56,13 +54,5 @@ app.controller('IndexController', ['$scope', '$filter', 'Global',
         console.log('currentSlide:', currentSlide);
       }
     });
-
-    $scope.PhoneNumber = $filter("phone")();
   }
 ]);
-
-app.filter('phone', function () {
-    return function (phone) {
-      return formatLocal('US', phone);
-    };
-});
