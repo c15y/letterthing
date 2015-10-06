@@ -3,15 +3,9 @@
     Send letters to the internet.
   </div>
   <div class="col-md-12 row">
-    <form name="form" ng-controller="IndexController">
-      <h2>angular-libphonenumber</h2>
-      <label for="countrycode">Country Code:</label>
-      <input id="countrycode" type="text" name="countrycode" ng-model="countrycode"><br>
-      <label for="phoneNumberTest">Phone Number:</label>
-
-      <input id="phoneNumberTest" type="text" name="phoneNumberTest" ng-model="phoneNumber" phone-number
-             country-code="countrycode"><br>
-      <span id="phone-value">{{phoneNumber}}</span> - {{form.phoneNumberTest.$valid}}<br>
-    </form>
+    <div>
+        <input type="text"  data-ng-model="PhoneNumber"  id="PhoneNumber" name="PhoneNumber" class="form-control" />
+        {{ PhoneNumber | phone }}
+    </div>
   </div>
 </section>
