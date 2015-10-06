@@ -59,35 +59,21 @@ app.controller('IndexController', ['$scope', 'Global',
 
     $scope.MSC = 5557771234;
 
-    $scope.phoneOnly = function($event) {
-
+    $scope.onlyMSC = function($event) {
         var key = String.fromCharCode($event.keyCode);
-
-        if (isNaN(key)) {
+        if (isNaN(key) || key == " " || $event.currentTarget.value.length >= 10) {
             $event.preventDefault();
             return;
         }
-
-        var value = toMSC($event.currentTarget.value);
-
-        var msc = toMSC(value + key);
-
-        if (msc.length > 10){
-            $event.preventDefault();
-            return;
-        }
-
-        $event.currentTarget.value = toPhone(value);
     };
   }
 ]);
 
 var toPhone = function (msc) {
-
     if (!msc) { return ''; }
 
-    var area = msc.slice(0, 3);
-    var number = msc.slice(3);
+    var area = msc.toString().slice(0, 3);
+    var number = msc.toString().slice(3);
 
     if (area.length == 3) {
       area = "(" + area + ") ";
@@ -101,21 +87,12 @@ var toPhone = function (msc) {
 };
 
 var toMSC = function(phone) {
-
     if (!phone) { return ''; }
-
     return phone.toString().replace(/[^0-9\.]+/g, '');
 };
 
-app.filter('validMSC', function() {
-
-    return function(phone) {
-        var msc = toMSC(phone);
-
-        if (msc.length != 10) {
-            return '';
-        }
-
-        return msc;
+app.filter('phone', function() {
+    return function(msc) {
+        return toPhone(msc);
     };
 });
