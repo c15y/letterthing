@@ -57,7 +57,7 @@ app.controller('IndexController', ['$scope', '$filter', 'Global',
       }
     });
 
-    $scope.PhoneNumber = $filter("phone")(5557771234);
+    $scope.MSC = 5557771234;
   }
 ]);
 
@@ -72,37 +72,20 @@ app.filter('phone', function () {
             return phone;
         }
 
-        var country, city, number;
+        var area, number;
 
         switch (value.length) {
-            case 10: // +1PPP####### -> C (PPP) ###-####
-                country = 1;
-                city = value.slice(0, 3);
+            case 10:
+                area = value.slice(0, 3);
                 number = value.slice(3);
-                break;
-
-            case 11: // +CPPP####### -> CCC (PP) ###-####
-                country = value[0];
-                city = value.slice(1, 4);
-                number = value.slice(4);
-                break;
-
-            case 12: // +CCCPP####### -> CCC (PP) ###-####
-                country = value.slice(0, 3);
-                city = value.slice(3, 5);
-                number = value.slice(5);
                 break;
 
             default:
                 return phone;
         }
 
-        if (country == 1) {
-            country = "";
-        }
-
         number = number.slice(0, 3) + '-' + number.slice(3);
 
-        return (country + " (" + city + ") " + number).trim();
+        return ("(" + area + ") " + number).trim();
     };
 });
