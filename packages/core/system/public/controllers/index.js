@@ -58,6 +58,12 @@ app.controller('IndexController', ['$scope', '$filter', 'Global',
     });
 
     $scope.MSC = 5557771234;
+
+    $scope.onlyDigits = function($event){
+        if(isNaN(String.fromCharCode($event.keyCode)) || $event.currentTarget.value.length == 10){
+            $event.preventDefault();
+        }
+    };
   }
 ]);
 

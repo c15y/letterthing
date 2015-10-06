@@ -4,7 +4,7 @@
   </div>
   <div class="col-md-12 row">
     <div>
-        <input type="text" data-ng-model="MSC" id="MSC" name="MSC" class="form-control" pattern="[0-9]{0,10}" ng-pattern-restrict="[0-9]{0,10}" required />
+        <input type="text" data-ng-model="MSC" id="MSC" name="MSC" class="form-control" ng-keypress="onlyDigits($event)" />
         {{ MSC | phone }}
     </div>
   </div>
