@@ -57,17 +57,17 @@ angular.module('mean.system').config(['$meanStateProvider', '$urlRouterProvider'
       });
 
     $meanStateProvider
-      .state('msc', {
-        url: '/:msc',
-        templateURL: 'system/views/msc.html',
-        controller: 'MSCController'
-      });
-
-    $meanStateProvider
       .state('Log Out', {
         controller: function () {
           window.location = '/logout';
         }
+      });
+
+    $meanStateProvider
+      .state('msc', {
+        url: '/{msc:[0-9]\{10\}}',
+        templateURL: 'system/views/msc.html',
+        controller: 'MSCController'
       });
 
     $urlRouterProvider.otherwise('/');
