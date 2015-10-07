@@ -68,30 +68,21 @@ app.controller('IndexController', ['$scope', 'Global',
   }
 ]);
 
-var toPhone = function (msc) {
-    if (!msc) { return ''; }
-
-    var area = msc.toString().slice(0, 3);
-    var number = msc.toString().slice(3);
-
-    if (area.length == 3) {
-      area = "(" + area + ") ";
-    }
-
-    if (number.length >= 3) {
-      number = number.slice(0, 3) + '-' + number.slice(3);
-    }
-
-    return area + number;
-};
-
-var toMSC = function(phone) {
-    if (!phone) { return ''; }
-    return phone.toString().replace(/[^0-9\.]+/g, '');
-};
-
 app.filter('phone', function() {
     return function(msc) {
-        return toPhone(msc);
+      if (!msc) { return ''; }
+
+      var area = msc.toString().slice(0, 3);
+      var number = msc.toString().slice(3);
+
+      if (area.length == 3) {
+        area = "(" + area + ") ";
+      }
+
+      if (number.length >= 3) {
+        number = number.slice(0, 3) + '-' + number.slice(3);
+      }
+
+      return area + number;
     };
 });
