@@ -1,11 +1,12 @@
 <section class="welcome container-fluid" data-ng-controller="IndexController">
   <div class="col-md-12 first">
-    Send letters to the internet.
+      Send letters to the internet.
   </div>
   <div class="col-md-12 row">
-    <div>
-        <input type="text" id="MSC" name="MSC" class="form-control" data-ng-model="MSC" data-ng-keypress="onlyMSC($event)" />
-        <h2>Phone {{ MSC | phone }}<h2>
-    </div>
+      <form name="form" class="msc-form" novalidate>
+          <h2>MSC:</h2>
+          <input type="text" id="MSC" name="MSC" class="form-control" data-ng-model="MSC" data-ng-keypress="onlyMSC($event)"/>
+          <h2>Phone: {{ MSC | phone }}</h2>
+      </form>
   </div>
 </section>
