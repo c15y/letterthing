@@ -16,9 +16,6 @@ app.controller('IndexController', ['$scope', 'Global', '$location', '$state', '$
       if (msc.length == 10) {
         $state.go('msc', { "msc": msc});
       }
-      else {
-        // $location.path('/');
-      }
     });
 
     $scope.MSC = $stateParams.msc;
@@ -62,5 +59,7 @@ app.factory('focus', function ($rootScope, $timeout) {
     });
   }
 });
+
+
 
 
