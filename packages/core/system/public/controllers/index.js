@@ -57,15 +57,14 @@ app.controller('IndexController', ['$scope', 'Global',
       }
     });
 
-    $scope.MSC = 5557771234;
 
-    $scope.onlyMSC = function($event) {
-        var key = String.fromCharCode($event.keyCode);
-        if (isNaN(key) || key == " " || $event.currentTarget.value.length >= 10) {
-            $event.preventDefault();
-            return;
-        }
-    };
+    $scope.$watch('MSC',function(newValue, oldValue) {
+      if(newValue !== undefined && !newValue.toString().match(/^[0-9]{0,10}$/g)) {
+        $scope.MSC = oldValue;
+      }
+    });
+
+    $scope.MSC = 5557771234;
   }
 ]);
 
