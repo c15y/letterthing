@@ -66,8 +66,8 @@ angular.module('mean.system').config(['$meanStateProvider', '$urlRouterProvider'
     $meanStateProvider
       .state('msc', {
         url: '/{msc:[0-9]\{10\}}',
-        templateUrl: 'system/views/msc.html',
-        controller: 'MSCController'
+        templateUrl: 'system/views/index.html',
+        controller: 'IndexController'
       });
 
     $urlRouterProvider.otherwise('/');

@@ -2,8 +2,8 @@
 
 var app = angular.module('mean.system');
 
-app.controller('IndexController', ['$scope', 'Global', '$location', '$state',
-  function($scope, Global, $location, $state) {
+app.controller('IndexController', ['$scope', 'Global', '$location', '$state', '$stateParams',
+  function($scope, Global, $location, $state, $stateParams) {
     $scope.global = Global;
 
     $scope.$watch('MSC', function(newValue, oldValue) {
@@ -15,10 +15,11 @@ app.controller('IndexController', ['$scope', 'Global', '$location', '$state',
 
       if (msc.length == 10) {
         $state.go('msc', { "msc": msc});
+        $scope.$broadcast('load');
       }
     });
 
-    $scope.MSC = 5557771234;
+    $scope.MSC = $stateParams.msc;
   }
 ]);
 
@@ -40,3 +41,12 @@ app.filter('phone', function() {
       return area + number;
     };
 });
+
+app.directive('focusOn', function() {
+    return function(scope, elem, attr) {
+        scope.$on(attr.focusOn, function(e) {
+            elem[0].focus();
+        });
+    };
+});
+
