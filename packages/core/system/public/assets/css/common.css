@@ -1,3 +1,15 @@
+body {
+   background:#f1f1f1 !important;
+}
+
+.navbar {
+   background:#f6f6f6 !important;
+}
+
+.container-fluid {
+   background:#f1f1f1 !important;
+}
+
 .page-header {
     padding-bottom: 0 !important;
     margin: 0 !important;
