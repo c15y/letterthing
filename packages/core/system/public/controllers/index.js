@@ -2,8 +2,8 @@
 
 var app = angular.module('mean.system');
 
-app.controller('IndexController', ['$scope', 'Global', '$location', '$state', '$stateParams',
-  function($scope, Global, $location, $state, $stateParams) {
+app.controller('IndexController', ['$scope', 'Global', '$location', '$state', '$stateParams', 'focus',
+  function($scope, Global, $location, $state, $stateParams, focus) {
     $scope.global = Global;
 
     $scope.$watch('MSC', function(newValue, oldValue) {
@@ -15,11 +15,11 @@ app.controller('IndexController', ['$scope', 'Global', '$location', '$state', '$
 
       if (msc.length == 10) {
         $state.go('msc', { "msc": msc});
-        $scope.$broadcast('load');
       }
     });
 
     $scope.MSC = $stateParams.msc;
+    focus('load');
   }
 ]);
 
@@ -43,10 +43,21 @@ app.filter('phone', function() {
 });
 
 app.directive('focusOn', function() {
-    return function(scope, elem, attr) {
-        scope.$on(attr.focusOn, function(e) {
-            elem[0].focus();
-        });
-    };
+   return function(scope, elem, attr) {
+      scope.$on('focusOn', function(e, name) {
+        if(name === attr.focusOn) {
+          elem[0].focus();
+        }
+      });
+   };
 });
+
+app.factory('focus', function ($rootScope, $timeout) {
+  return function(name) {
+    $timeout(function (){
+      $rootScope.$broadcast('focusOn', name);
+    });
+  }
+});
+
 
