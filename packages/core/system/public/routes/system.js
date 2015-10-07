@@ -49,6 +49,12 @@ angular.module('mean.system').provider('$meanState', ['$stateProvider', '$viewPa
 //Setting up route
 angular.module('mean.system').config(['$meanStateProvider', '$urlRouterProvider',
   function($meanStateProvider, $urlRouterProvider) {
+
+/*
+    $urlRouterProvider.when('/{msc: ^[0-9]\{10\}}', function(urlattr) {
+        return '/' + urlattr.msc;
+    });
+*/
     // For unmatched routes:
     $urlRouterProvider.otherwise('/');
 
@@ -57,6 +63,13 @@ angular.module('mean.system').config(['$meanStateProvider', '$urlRouterProvider'
       .state('home', {
         url: '/',
         templateUrl: 'system/views/index.html'
+      });
+
+    $meanStateProvider
+      .state('msc', {
+        url: '/:msc',
+        templateURL: 'system/views/msc.html',
+        controller: 'MSCController'
       });
 
     $meanStateProvider
