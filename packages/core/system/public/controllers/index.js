@@ -13,13 +13,13 @@ app.controller('IndexController', ['$scope', 'Global', '$location', '$state', '$
 
       var msc = $scope.MSC;
 
-      if (msc.length == 10) {
+      if (msc && msc.length == 10) {
         $state.go('msc', { "msc": msc});
       }
     });
 
     $scope.MSC = $stateParams.msc;
-    focus('load');
+    focus('msc');
   }
 ]);
 
