@@ -2,6 +2,6 @@
   <form name="form" class="msc-form" novalidate>
     <h2>Mail Stop Code:</h2>
     <input type="text" id="MSC" name="MSC" class="form-control" data-ng-model="MSC" data-ng-keypress="onlyMSC($event)"/>
-    <h2>Phone: {{ MSC | phone }}</h2>
+    <h2>{{ MSC | phone }}</h2>
   </form>
 </section>
