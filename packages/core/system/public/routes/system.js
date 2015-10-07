@@ -50,15 +50,6 @@ angular.module('mean.system').provider('$meanState', ['$stateProvider', '$viewPa
 angular.module('mean.system').config(['$meanStateProvider', '$urlRouterProvider',
   function($meanStateProvider, $urlRouterProvider) {
 
-/*
-    $urlRouterProvider.when('/{msc: ^[0-9]\{10\}}', function(urlattr) {
-        return '/' + urlattr.msc;
-    });
-*/
-    // For unmatched routes:
-    $urlRouterProvider.otherwise('/');
-
-    // states for my app
     $meanStateProvider
       .state('home', {
         url: '/',
@@ -78,6 +69,8 @@ angular.module('mean.system').config(['$meanStateProvider', '$urlRouterProvider'
           window.location = '/logout';
         }
       });
+
+    $urlRouterProvider.otherwise('/');
   }
 ]).config(['$locationProvider',
   function($locationProvider) {
