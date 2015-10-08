@@ -1,12 +1,16 @@
 <section class="container-fluid" data-ng-controller="IndexController">
 
-  Mail Stop:
-  <input type="text" id="MSC" name="MSC" class="form-control"
-         data-ng-model="MSC" data-ng-trim="false" focus-on="msc" />
+  <div class="col-xs-6 col-sm-3">
+    Mail Stop:
+    <input type="text" id="MSC" name="MSC" class="form-control"
+           data-ng-model="MSC" data-ng-trim="false" focus-on="msc" />
 
-  Phone: <em>{{ MSC | phone }}</em>
+    Phone: <em>{{ MSC | phone }}</em>
+  </div>
 
-  <h2>{{ MailStop }}</h2>
+  <div class=".col-md-3">
+    {{ MailStop }}
+  </div>
 
   <footer class="footer">
     Questions?  Email <a href="mailto:info@letterthing.com">info@letterthing.com</a>.
