@@ -18,11 +18,14 @@ app.controller('IndexController', ['$scope', 'Global', '$location', '$state', '$
       var msc = $scope.MSC;
 
       if (msc && msc.length == 10 && msc != oldValue) {
-        $state.MailStop = MailStops.get({"code": msc});
         $state.go('msc', { "msc": msc});
       }
-      else {
-        $state.MailStop = undefined;
+
+      if (!msc || msc.length != 10) {
+        $scope.MailStop = undefined;
+      }
+      else if (!$scope.MailStop || $scope.MailStop.code != msc) {
+        $scope.MailStop = MailStops.get({"code": msc});
       }
     });
 
