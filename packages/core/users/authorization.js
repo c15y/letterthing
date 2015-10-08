@@ -19,7 +19,7 @@ var findUser = exports.findUser = function(id, cb) {
  */
 exports.requiresLogin = function(req, res, next) {
   if (!req.isAuthenticated()) {
-    return res.status(401).send('User is not authorized');
+    return res.status(401).send('User is not authenticated');
   }
   findUser(req.user._id, function(user) {
       if (!user) return res.status(401).send('User is not authorized');
@@ -34,7 +34,7 @@ exports.requiresLogin = function(req, res, next) {
  */
 exports.requiresAdmin = function(req, res, next) {
   if (!req.isAuthenticated()) {
-    return res.status(401).send('User is not authorized');
+    return res.status(401).send('User is not authenticated');
   }
   findUser(req.user._id, function(user) {
       if (!user) return res.status(401).send('User is not authorized');

@@ -7,9 +7,9 @@ module.exports = function(System, app, auth, database) {
 
     var mailStops = require('../controllers/mail-stops');
 
-    // app.get('/api/mailStops', auth.requiresAdmin, mailStops.all);
+    // app.get('/api/mailStops', mailStops.all);
     app.post('/api/mailStops', auth.requiresAdmin, mailStops.create);
-    app.get('/api/mailStops/:code', auth.requiresAdmin, mailStops.get);
+    app.get('/api/mailStops/:code', mailStops.get);
     // app.put('/api/mailStops/:code', auth.requiresAdmin, mailStops.update);
     // app.delete('/api/mailStops/:code', auth.requiresAdmin, mailStops.delete);
 };
