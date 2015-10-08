@@ -2,8 +2,8 @@
 
 var app = angular.module('mean.system');
 
-app.controller('IndexController', ['$scope', 'Global', '$location', '$state', '$stateParams', 'focus',
-  function($scope, Global, $location, $state, $stateParams, focus) {
+app.controller('IndexController', ['$scope', 'Global', '$location', '$state', '$stateParams', 'focus', 'Offices',
+  function($scope, Global, $location, $state, $stateParams, focus, Offices) {
     $scope.global = Global;
 
     $scope.$watch('MSC', function(newValue, oldValue) {

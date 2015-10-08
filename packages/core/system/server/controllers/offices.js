@@ -49,12 +49,20 @@
 /**
 * Get an Office by name
 */
-exports.get = function(req, res, next, name) {
+exports.office = function(req, res, next, name) {
     Office.findOne({
         name: name
     }).exec(function(err, office) {
         if (err) return next(err);
         if (!office) return next(new Error('Failed to load Office by name ' + name));
+        req.params.office = office;
         next();
     });
+};
+
+/**
+* Get an Office
+*/
+exports.get = function(req, res) {
+    res.send(req.params.office);
 };
