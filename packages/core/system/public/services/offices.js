@@ -2,12 +2,9 @@
 
 angular.module('mean.system').factory('Offices', ['$resource',
   function($resource) {
-    return $resource('/api/offices/:name', {
-      name: '@name'
+    return $resource('/api/offices/:id', {
+      id: '@id'
     }, {
-      create: {
-        method: 'POST'
-      },
       get: {
         method: 'GET',
         isArray: false

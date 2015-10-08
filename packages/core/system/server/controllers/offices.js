@@ -5,7 +5,7 @@
  _ = require('lodash');
 
 /**
-* Create an Office
+* Create Office
 */
  exports.create = function(req, res, next) {
     var office = new Office(req.body);
@@ -47,21 +47,36 @@
 };
 
 /**
-* Get an Office by name
+* Load Office by id
 */
-exports.office = function(req, res, next, name) {
+exports.load = function(req, res, next, id) {
     Office.findOne({
-        name: name
+        id: id
     }).exec(function(err, office) {
         if (err) return next(err);
-        if (!office) return next(new Error('Failed to load Office by name ' + name));
+        if (!office) return next(new Error('Failed to load Office by id ' + id));
         req.params.office = office;
         next();
     });
 };
 
 /**
-* Get an Office
+ * List of Offices
+ */
+exports.all = function(req, res) {
+    Office.find().sort('+name').populate('office', 'name').exec(function(err, offices) {
+        if (err) {
+            res.render('error', {
+                status: 500
+            });
+        } else {
+            res.send(offices);
+        }
+    });
+};
+
+/**
+* Get Office
 */
 exports.get = function(req, res) {
     res.send(req.params.office);

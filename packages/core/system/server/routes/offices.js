@@ -4,11 +4,10 @@ module.exports = function(System, app, auth, database) {
 
     var offices = require('../controllers/offices');
 
-    app.param('officeName', offices.office);
+    app.param('officeId', offices.load);
 
-    // app.get('/api/offices', offices.all);
+    app.get('/api/offices', offices.all);
     app.post('/api/offices', auth.requiresAdmin, offices.create);
-    app.get('/api/offices/:officeName', offices.get);
-    // app.put('/api/offices/:officeName', auth.requiresAdmin, offices.update);
-    // app.delete('/api/offices/:officeName', auth.requiresAdmin, offices.delete);
+    // app.put('/api/offices/:officeId', auth.requiresAdmin, offices.update);
+    // app.delete('/api/offices/:officeId', auth.requiresAdmin, offices.delete);
 };
