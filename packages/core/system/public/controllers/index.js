@@ -2,19 +2,27 @@
 
 var app = angular.module('mean.system');
 
-app.controller('IndexController', ['$scope', 'Global', '$location', '$state', '$stateParams', 'focus', 'Offices',
-  function($scope, Global, $location, $state, $stateParams, focus, Offices) {
+app.controller('IndexController', ['$scope', 'Global', '$location', '$state', '$stateParams', 'focus', 'MailStops',
+  function($scope, Global, $location, $state, $stateParams, focus, MailStops) {
     $scope.global = Global;
 
     $scope.$watch('MSC', function(newValue, oldValue) {
+      if (oldValue && oldValue.length > 10) {
+        return;
+      }
+
       if(newValue !== undefined && !newValue.toString().match(/^[0-9]{0,10}$/g)) {
         $scope.MSC = oldValue;
       }
 
       var msc = $scope.MSC;
 
-      if (msc && msc.length == 10) {
+      if (msc && msc.length == 10 && msc != oldValue) {
+        $state.MailStop = MailStops.get({"code": msc});
         $state.go('msc', { "msc": msc});
+      }
+      else {
+        $state.MailStop = undefined;
       }
     });
 

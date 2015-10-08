@@ -22,7 +22,7 @@
                 case 11000:
                 case 11001:
                 res.status(400).json([{
-                    msg: 'Mail Stop Code already in use',
+                    msg: 'MailStop code already in use',
                     param: 'code'
                 }]);
                 break;
@@ -47,14 +47,22 @@
 };
 
 /**
-* Get a MailStop by code
+* Load a MailStop by code
 */
-exports.get = function(req, res, next, code) {
+exports.mailStop = function(req, res, next, code) {
     MailStop.findOne({
         code: code
     }).exec(function(err, mailStop) {
         if (err) return next(err);
         if (!mailStop) return next(new Error('Failed to load MailStop by code ' + code));
+        req.params.mailStop = mailStop;
         next();
     });
+};
+
+/**
+* Get a MailStop
+*/
+exports.get = function(req, res) {
+    res.send(req.params.mailStop);
 };
