@@ -1,7 +1,7 @@
 'use strict';
 
 var mongoose  = require('mongoose'),
-    Schema    = mongoose.Schema,
+     Schema   = mongoose.Schema,
           _   = require('lodash');
 
 var validateUniqueMailStopCode = function(value, callback) {
