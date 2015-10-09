@@ -2,9 +2,11 @@
 
 var app = angular.module('mean.system');
 
-app.controller('IndexController', ['$scope', 'Global', '$location', '$state', '$stateParams', 'focus', 'MailStops',
-  function($scope, Global, $location, $state, $stateParams, focus, MailStops) {
+app.controller('IndexController', ['$scope', 'Global', '$location', '$state', '$stateParams', 'MeanUser', 'focus', 'MailStops',
+  function($scope, Global, $location, $state, $stateParams, MeanUser, focus, MailStops) {
     $scope.global = Global;
+
+    $scope.user = MeanUser;
 
     $scope.$watch('MSC', function(newValue, oldValue) {
       if (oldValue && oldValue.length > 10) {

@@ -31,7 +31,9 @@
           <div ng-show="MailStop">
             <li class="list-group-item">Settings</li>
             <li class="list-group-item">Balance</li>
-            <li class="list-group-item">Add a Letter (operators)</li>
+            <div ng-show="user && user.isAdmin">
+              <li class="list-group-item">Add a Letter</li>
+            </div>
           </div>
         </ul>
       </div>
