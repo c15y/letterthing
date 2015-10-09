@@ -12,7 +12,7 @@
                                'one': 'One letter found.',
                              'other': '{} letters found.'}">
         </ng-pluralize>
-        <ui-select multiple ng-model="letter.selected">
+        <ui-select multiple ng-model="letters.selected">
            <ui-select-match placeholder="Select letter...">{{$item}}</ui-select-match>
            <ui-select-choices repeat="letter in MailStop.letters | filter:$select.search">
              {{letter}}

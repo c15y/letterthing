@@ -29,7 +29,7 @@ app.controller('IndexController', ['$scope', 'Global', '$location', '$state', '$
         $scope.MailStop = mailStop;
       }
 
-      $scope.letter = {}
+      $scope.letters = {}
     });
 
     $scope.MSC = $stateParams.msc;
