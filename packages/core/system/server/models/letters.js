@@ -37,4 +37,4 @@ var LetterSchema = new Schema({
   }
 });
 
-mongoose.model('Letter', LetterSchema);
+exports.Letter = mongoose.model('Letter', LetterSchema);

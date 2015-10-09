@@ -29,4 +29,4 @@ var MailStopSchema = new Schema({
   }
 });
 
-mongoose.model('MailStop', MailStopSchema);
+exports.MailStop = mongoose.model('MailStop', MailStopSchema);
