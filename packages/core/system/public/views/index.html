@@ -12,29 +12,37 @@
                                'one': 'One letter found.',
                              'other': '{} letters found.'}">
         </ng-pluralize>
-        <ui-select multiple ng-model="letters.selected">
-           <ui-select-match placeholder="Select letter...">{{$item}}</ui-select-match>
-           <ui-select-choices repeat="letter in MailStop.letters | filter:$select.search">
-             {{letter}}
-           </ui-select-choices>
-         </ui-select>
+        <div ng-show="MailStop && MailStop.letters.length != 0">
+          <ui-select multiple ng-model="letters.selected">
+             <ui-select-match placeholder="Select letter...">{{$item}}</ui-select-match>
+             <ui-select-choices repeat="letter in MailStop.letters | filter:$select.search">
+               {{letter}}
+             </ui-select-choices>
+           </ui-select>
+         </div>
       </div>
       <div class="col-xs-3 col-sm-4">
       </div>
       <div class="col-xs-3 col-sm-4">
         <ul class="list-group">
-            <li class="list-group-item">Mail an Invitation
+          <div ng-show="MailStop && MailStop.letters.length != 0">
+            <li class="list-group-item">Mail an Invitation</li>
+          </div>
+          <div ng-show="MailStop">
             <li class="list-group-item">Settings</li>
             <li class="list-group-item">Balance</li>
-            <li class="list-group-item">Add a Letter (operators)
-          </ul>
+            <li class="list-group-item">Add a Letter (operators)</li>
+          </div>
+        </ul>
       </div>
     </div>
     <hr>
     <div class="row">
       <div class="col-xs-9 col-sm-8">
         <ul class="list-group">
-          <li class="list-group-item">Image Carousel</li>
+          <div ng-show="letters.selected">
+            <li class="list-group-item">Image Carousel</li>
+          </div>
         </ul>
       </div>
       <div class="col-xs-3 col-sm-4">
@@ -44,9 +52,11 @@
     <div class="row">
       <div class="col-xs-12 col-sm-12">
         <ul class="list-group">
-          <li class="list-group-item">Replies (Compose, Collaborate, Preview, Schedule)</li>
-          <li class="list-group-item">Like, Share</li>
-          <li class="list-group-item">Comments</li>
+          <div ng-show="letters.selected">
+            <li class="list-group-item">Replies (Compose, Collaborate, Preview, Schedule)</li>
+            <li class="list-group-item">Like, Share</li>
+            <li class="list-group-item">Comments</li>
+          </div>
         </ul>
       </div>
     </div>
