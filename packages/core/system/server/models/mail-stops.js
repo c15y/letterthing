@@ -26,7 +26,8 @@ var MailStopSchema = new Schema({
     required: true,
     match: ["/^[0-9]{10}$/g", "Code must be a 10-digit number"],
     validate: [validateUniqueMailStopCode, "Code is already in use"]
-  }
+  },
+  letters: [ mongoose.model('Letter').schema ]
 });
 
 exports.MailStop = mongoose.model('MailStop', MailStopSchema);
