@@ -25,7 +25,8 @@ app.controller('IndexController', ['$scope', 'Global', '$location', '$state', '$
         $scope.MailStop = undefined;
       }
       else if (!$scope.MailStop || $scope.MailStop.code != msc) {
-        $scope.MailStop = MailStops.get({"code": msc});
+        var mailStop = MailStops.get({"code": msc});
+        $scope.MailStop = mailStop;
       }
     });
 
