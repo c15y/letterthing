@@ -7,10 +7,10 @@
         <em>{{ MSC | phone }}</em>
         <br><br>
         <ng-pluralize count="MailStop == undefined ? -1 : MailStop.letters.length"
-                         when="{'-1': 'No Mail Stop selected.',
-                                 '0': 'No letters found.',
-                               'one': 'One letter found.',
-                             'other': '{} letters found.'}">
+                       when="{'-1': 'No Mail Stop selected.',
+                               '0': 'No letters found.',
+                             'one': 'One letter found.',
+                           'other': '{} letters found.'}">
         </ng-pluralize>
         <div ng-show="MailStop && MailStop.letters.length != 0">
           <ui-select multiple ng-model="letters.selected">
