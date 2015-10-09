@@ -1,15 +1,48 @@
 <section class="container-fluid" data-ng-controller="IndexController">
+    <div class="row">
+      <div class="col-xs-6 col-sm-4">
+        Mail Stop:
+        <input type="text" id="MSC" name="MSC" class="form-control"
+               data-ng-model="MSC" data-ng-trim="false" focus-on="msc" />
 
-  <div class="col-xs-6 col-sm-3">
-    Mail Stop:
-    <input type="text" id="MSC" name="MSC" class="form-control"
-           data-ng-model="MSC" data-ng-trim="false" focus-on="msc" />
-
-    Phone: <em>{{ MSC | phone }}</em>
-  </div>
-
-  <div class=".col-md-3">
-    {{ MailStop }}
+        Phone: <em>{{ MSC | phone }}</em>
+        <br>
+        Found {{ MailStop.letters.length }} letter(s)
+        <ul class="list-group">
+          <li class="list-group-item">Letter Selector
+        </ul>
+      </div>
+      <div class="col-xs-3 col-sm-4">
+      </div>
+      <div class="col-xs-3 col-sm-4">
+        <ul class="list-group">
+            <li class="list-group-item">Mail an Invitation
+            <li class="list-group-item">Settings</li>
+            <li class="list-group-item">Balance</li>
+            <li class="list-group-item">Add a Letter (operators)
+          </ul>
+      </div>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="col-xs-9 col-sm-8">
+        <ul class="list-group">
+          <li class="list-group-item">Image Carousel</li>
+        </ul>
+      </div>
+      <div class="col-xs-3 col-sm-4">
+      </div>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="col-xs-12 col-sm-12">
+        <ul class="list-group">
+          <li class="list-group-item">Replies (Compose, Collaborate, Preview, Schedule)</li>
+          <li class="list-group-item">Like, Share</li>
+          <li class="list-group-item">Comments</li>
+        </ul>
+      </div>
+    </div>
   </div>
 
   <footer class="footer">
