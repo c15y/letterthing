@@ -13,7 +13,7 @@
                            'other': '{} letters found.'}">
         </ng-pluralize>
         <div ng-show="MailStop && MailStop.letters.length != 0">
-          <ui-select multiple ng-model="letters.selected">
+          <ui-select multiple ng-model="letter.selected">
              <ui-select-match placeholder="Select letter...">{{$item}}</ui-select-match>
              <ui-select-choices repeat="letter in MailStop.letters | filter:$select.search">
                {{letter}}
@@ -40,7 +40,7 @@
     <div class="row">
       <div class="col-xs-9 col-sm-8">
         <ul class="list-group">
-          <div ng-show="letters.selected">
+          <div ng-show="letter.selected">
             <li class="list-group-item">Image Carousel</li>
           </div>
         </ul>
@@ -52,7 +52,7 @@
     <div class="row">
       <div class="col-xs-12 col-sm-12">
         <ul class="list-group">
-          <div ng-show="letters.selected">
+          <div ng-show="letter.selected">
             <li class="list-group-item">Replies (Compose, Collaborate, Preview, Schedule)</li>
             <li class="list-group-item">Like, Share</li>
             <li class="list-group-item">Comments</li>
