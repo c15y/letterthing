@@ -28,6 +28,8 @@ app.controller('IndexController', ['$scope', 'Global', '$location', '$state', '$
         var mailStop = MailStops.get({"code": msc});
         $scope.MailStop = mailStop;
       }
+
+      $scope.letter = {}
     });
 
     $scope.MSC = $stateParams.msc;
