@@ -40,7 +40,8 @@ app.controller('IndexController', ['$scope', 'Global', '$location', '$state', '$
       $uibModal.open({
         animation: true,
         templateUrl: 'system/views/add-letter.html',
-        controller: 'LetterController'
+        controller: 'LetterController',
+        scope: $scope
       });
     };
   }

@@ -1,9 +1,10 @@
 'use strict';
 
-angular.module('mean.system').controller('LetterController', ['$scope', '$modalInstance', 'FileUploader',
+angular.module('mean.system').controller('LetterController', ['$scope', '$modalInstance',  'FileUploader',
   function($scope, $modalInstance, FileUploader) {
+
     var uploader = $scope.uploader = new FileUploader({
-      url: '/api/images'
+      url: '(URL is set dynamically in onAfterAddingFile)'
     });
 
     uploader.filters.push({
@@ -14,10 +15,19 @@ angular.module('mean.system').controller('LetterController', ['$scope', '$modalI
       }
     });
 
+    $scope.submit = function () {
+      $modalInstance.close();
+    };
+
+    $scope.cancel = function () {
+      $modalInstance.dismiss('cancel');
+    };
+
     uploader.onWhenAddingFileFailed = function(item /*{File|FileLikeObject}*/, filter, options) {
       console.info('onWhenAddingFileFailed', item, filter, options);
     };
     uploader.onAfterAddingFile = function(fileItem) {
+      fileItem.url = '/api/mailStops/' + $scope.msc;
       console.info('onAfterAddingFile', fileItem);
     };
     uploader.onAfterAddingAll = function(addedFileItems) {
@@ -46,16 +56,6 @@ angular.module('mean.system').controller('LetterController', ['$scope', '$modalI
     };
     uploader.onCompleteAll = function() {
       console.info('onCompleteAll');
-    };
-
-    console.info('uploader', uploader);
-
-    $scope.submit = function () {
-      $modalInstance.close();
-    };
-
-    $scope.cancel = function () {
-      $modalInstance.dismiss('cancel');
     };
   }]);
 
