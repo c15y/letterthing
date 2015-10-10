@@ -37,16 +37,10 @@ app.controller('IndexController', ['$scope', 'Global', '$location', '$state', '$
     focus('msc');
 
     $scope.addLetter = function () {
-      var addLetterModal = $modal.open({
+      $modal.open({
         animation: true,
         templateUrl: 'system/views/add-letter.html',
         controller: 'LetterController'
-      });
-
-      addLetterModal.result.then(function (selectedItem) {
-        $scope.selected = selectedItem;
-      }, function () {
-        $log.info('Modal dismissed at: ' + new Date());
       });
     };
   }
