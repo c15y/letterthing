@@ -3,38 +3,37 @@
 var app = angular.module('mean.system');
 
 app.controller('IndexController', ['$scope', 'Global', '$location', '$state', '$stateParams', 'MeanUser', 'focus', 'MailStops',
-  function($scope, Global, $location, $state, $stateParams, MeanUser, focus, MailStops) {
+  function($scope, Global, $location, $state, $stateParams, User, focus, MailStops) {
     $scope.global = Global;
+    $scope.user = User;
 
-    $scope.user = MeanUser;
-
-    $scope.$watch('MSC', function(newValue, oldValue) {
+    $scope.$watch('msc', function(newValue, oldValue) {
       if (oldValue && oldValue.length > 10) {
         return;
       }
 
       if(newValue !== undefined && !newValue.toString().match(/^[0-9]{0,10}$/g)) {
-        $scope.MSC = oldValue;
+        $scope.msc = oldValue;
       }
 
-      var msc = $scope.MSC;
+      var msc = $scope.msc;
 
       if (msc && msc.length == 10 && msc != oldValue) {
         $state.go('msc', { "msc": msc});
       }
 
       if (!msc || msc.length != 10) {
-        $scope.MailStop = undefined;
+        $scope.mailStop = undefined;
       }
-      else if (!$scope.MailStop || $scope.MailStop.code != msc) {
+      else if (!$scope.mailStop || $scope.mailStop.code != msc) {
         var mailStop = MailStops.get({"code": msc});
-        $scope.MailStop = mailStop;
+        $scope.mailStop = mailStop;
       }
 
       $scope.letter = {}
     });
 
-    $scope.MSC = $stateParams.msc;
+    $scope.msc = $stateParams.msc;
     focus('msc');
   }
 ]);

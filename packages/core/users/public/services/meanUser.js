@@ -41,6 +41,8 @@ angular.module('mean.users').factory('MeanUser', [ '$rootScope', '$http', '$loca
       this.registerForm = false;
       this.loggedin = false;
       this.isAdmin = false;
+      this.isOperator = false;
+      this.roles = [];
       this.loginError = 0;
       this.usernameError = null;
       this.registerError = null;
@@ -50,7 +52,7 @@ angular.module('mean.users').factory('MeanUser', [ '$rootScope', '$http', '$loca
       $http.get('/api/users/me').success(function(response) {
         if(!response && $cookies.get('token') && $cookies.get('redirect')) {
           self.onIdentity.bind(self)({
-            token: $cookies.get('token'), 
+            token: $cookies.get('token'),
             redirect: $cookies.get('redirect').replace(/^"|"$/g, '')
           });
           $cookies.remove('token');
@@ -67,14 +69,20 @@ angular.module('mean.users').factory('MeanUser', [ '$rootScope', '$http', '$loca
       if (angular.isDefined(response.token)) {
         localStorage.setItem('JWT', response.token);
         encodedUser = decodeURI(b64_to_utf8(response.token.split('.')[1]));
-        user = JSON.parse(encodedUser); 
+        user = JSON.parse(encodedUser);
       }
       destination = angular.isDefined(response.redirect) ? response.redirect : destination;
       this.user = user || response;
       this.loggedin = true;
       this.loginError = 0;
       this.registerError = 0;
+      this.roles = this.user.roles;
       this.isAdmin = !! (this.user.roles.indexOf('admin') + 1);
+
+      this.isOperator = this.user.roles.indexOf('operator') != -1 ||
+                        this.user.roles.indexOf('manager') != -1 ||
+                        this.user.roles.indexOf('admin') != -1;
+
       if (destination) $location.path(destination);
       $rootScope.$emit('loggedin');
     };
@@ -138,6 +146,7 @@ angular.module('mean.users').factory('MeanUser', [ '$rootScope', '$http', '$loca
       this.user = {};
       this.loggedin = false;
       this.isAdmin = false;
+      this.isOperator = false;
 
       $http.get('/api/logout').success(function(data) {
         localStorage.removeItem('JWT');
@@ -199,6 +208,10 @@ angular.module('mean.users').factory('MeanUser', [ '$rootScope', '$http', '$loca
       });
 
       return deferred.promise;
+    };
+
+    MeanUserKlass.prototype.hasRole = function(role) {
+      this.roles.indexOf(role) !== -1;
     };
 
     return MeanUser;
