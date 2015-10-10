@@ -1,21 +1,25 @@
 <section class="container-fluid modal-lg" nv-file-drop="" uploader="uploader">
 
     <div class="modal-header">
-        <h3 class="modal-title">Add a Letter</h3>
+        <h2 class="modal-title">Add a Letter</h2>
     </div>
 
     <div class="modal-body">
       <div class="row">
+        <h3>Choose Images</h3>
+      </div>
 
+      <div class="row">
         <div class="col-md-2">
-
-        <span class="btn btn-info btn-file class="vert-align"">
-          Browse... <input type="file" nv-file-select="" uploader="uploader" multiple />
-        </span>
-
+          <span class="btn btn-info btn-file glyphicon glyphicon-picture"> Browse... <input type="file" nv-file-select="" uploader="uploader" multiple />
+          </span>
         </div>
 
-        <div class="col-md-10">
+        <div class="col-md-1">
+          <b>OR</b>
+        </div>
+
+        <div class="col-md-9">
           <div ng-show="uploader.isHTML5">
             <!-- 3. nv-file-over uploader="link" over-class="className" -->
             <div class="well file-drop-zone" nv-file-over="" uploader="uploader">
@@ -94,10 +98,11 @@
           </button>
         </div>
       </div>
+    </div>
 
     <div class="modal-footer">
-      <button class="btn btn-primary" type="button" ng-click="submit()">Add Letter</button>
-      <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+      <button class="btn btn-primary" type="button" ng-click="submit()" ><span class="glyphicon glyphicon-ok"></span> Add Letter</button>
+      <button class="btn btn-warning" type="button" ng-click="cancel()"><span class="glyphicon glyphicon-ban-circle"></span> Cancel</button>
     </div>
 
 </section>
