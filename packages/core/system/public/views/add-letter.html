@@ -1,4 +1,4 @@
-<section class="container-fluid" nv-file-drop="" uploader="uploader">
+<section class="container-fluid modal-lg" nv-file-drop="" uploader="uploader">
 
     <div class="modal-header">
         <h3 class="modal-title">Add a Letter</h3>
@@ -7,15 +7,15 @@
     <div class="modal-body">
       <div class="row">
 
-        <div class="col-md-3">
+        <div class="col-md-2">
 
-        <span class="btn btn-info btn-file">
+        <span class="btn btn-info btn-file class="vert-align"">
           Browse... <input type="file" nv-file-select="" uploader="uploader" multiple />
         </span>
 
         </div>
 
-        <div class="col-md-9">
+        <div class="col-md-10">
           <div ng-show="uploader.isHTML5">
             <!-- 3. nv-file-over uploader="link" over-class="className" -->
             <div class="well file-drop-zone" nv-file-over="" uploader="uploader">
@@ -29,7 +29,7 @@
         <table class="table">
           <thead>
             <tr>
-              <th width="50%">Name</th>
+              <th width="25%">Name</th>
               <th ng-show="uploader.isHTML5">Size</th>
               <th ng-show="uploader.isHTML5">Progress</th>
               <th>Status</th>
@@ -59,7 +59,7 @@
                 <span ng-show="item.isCancel"><i class="glyphicon glyphicon-ban-circle"></i></span>
                 <span ng-show="item.isError"><i class="glyphicon glyphicon-remove"></i></span>
               </td>
-              <td nowrap>
+              <td>
                 <button type="button" class="btn btn-success btn-xs" ng-click="item.upload()" ng-disabled="item.isReady || item.isUploading || item.isSuccess">
                   <span class="glyphicon glyphicon-upload"></span> Upload
                 </button>
