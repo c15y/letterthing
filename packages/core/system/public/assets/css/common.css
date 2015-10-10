@@ -45,6 +45,7 @@ footer {
 	bottom: 0;
 	height: 30px;
 	width: 100%;
+  text-indent: 70px;
 	background: #ddd;
 	-webkit-box-shadow: 0 8px 6px 6px black;
 	-moz-box-shadow: 0 8px 6px 6px black;
