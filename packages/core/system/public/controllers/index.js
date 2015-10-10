@@ -2,8 +2,8 @@
 
 var app = angular.module('mean.system');
 
-app.controller('IndexController', ['$scope', 'Global', '$location', '$state', '$stateParams', 'MeanUser', 'focus', 'MailStops', '$modal',
-  function($scope, Global, $location, $state, $stateParams, User, focus, MailStops, $modal) {
+app.controller('IndexController', ['$scope', 'Global', '$location', '$state', '$stateParams', 'MeanUser', 'focus', 'MailStops', '$uibModal',
+  function($scope, Global, $location, $state, $stateParams, User, focus, MailStops, $uibModal) {
     $scope.global = Global;
     $scope.user = User;
 
@@ -37,7 +37,7 @@ app.controller('IndexController', ['$scope', 'Global', '$location', '$state', '$
     focus('msc');
 
     $scope.addLetter = function () {
-      $modal.open({
+      $uibModal.open({
         animation: true,
         templateUrl: 'system/views/add-letter.html',
         controller: 'LetterController'

@@ -13,6 +13,7 @@
     "web-bootstrap": "./node_modules/meanio/resources/web-bootstrap.js",
     "angular-ui-select": "latest",
     "angular-sanitize": "latest",
-    "ng-flow": "latest"
+    "flow.js": "latest",
+    "ng-flow": "~2"
   }
 }
