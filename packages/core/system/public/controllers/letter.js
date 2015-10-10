@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('mean.system').controller('LetterController', ['$scope', 'FileUploader',
-  function($scope, FileUploader) {
+angular.module('mean.system').controller('LetterController', ['$scope', '$modalInstance', 'FileUploader',
+  function($scope, $modalInstance, FileUploader) {
     var uploader = $scope.uploader = new FileUploader({
       url: '/api/images'
     });
@@ -49,6 +49,14 @@ angular.module('mean.system').controller('LetterController', ['$scope', 'FileUpl
     };
 
     console.info('uploader', uploader);
+
+    $scope.submit = function () {
+      $modalInstance.close();
+    };
+
+    $scope.cancel = function () {
+      $modalInstance.dismiss('cancel');
+    };
   }]);
 
   // Thumbnail directive
