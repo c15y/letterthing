@@ -64,3 +64,6 @@ footer p {
     /*border-color:#78FA89;*/
 /*}*/
 
+a.list-group-item {
+  cursor: pointer;
+}

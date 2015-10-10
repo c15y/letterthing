@@ -26,15 +26,15 @@
       <div class="col-xs-3 col-sm-4">
       </div>
       <div class="col-xs-3 col-sm-4">
-        <ul class="list-group">
+        <div class="list-group">
           <div ng-show="mailStop && mailStop.letters.length != 0">
-            <li class="list-group-item">Mail an Invitation</li>
+            <a class="list-group-item">Mail an Invitation</a>
           </div>
           <div ng-show="mailStop">
-            <li class="list-group-item">Settings</li>
-            <li class="list-group-item">Balance</li>
+            <a class="list-group-item">Settings</a>
+            <a class="list-group-item">Balance</a>
             <div ng-if="user.isOperator">
-              <li class="list-group-item"/><a ng-click="addLetter()">Add a Letter</a></li>
+              <a class="list-group-item" ng-click="addLetter()">Add a Letter</a>
             </div>
           </div>
         </ul>
