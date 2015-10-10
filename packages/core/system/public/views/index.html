@@ -1,11 +1,11 @@
-<section class="container-fluid" data-ng-controller="IndexController">
+<section class="container-fluid" ng-controller="IndexController">
     <div class="row">
       <div class="col-xs-6 col-sm-4">
         {{ availableCircles }}
         <br>
         Mail Stop:
         <input type="text" id="msc" name="msc" class="form-control"
-               data-ng-model="msc" data-ng-trim="false" focus-on="msc" />
+               ng-model="msc" ng-trim="false" focus-on="msc" />
         <em>{{ msc | phone }}</em>
         <br><br>
         <ng-pluralize count="mailStop == undefined ? -1 : mailStop.letters.length"
@@ -34,7 +34,7 @@
             <li class="list-group-item">Settings</li>
             <li class="list-group-item">Balance</li>
             <div ng-if="user.isOperator">
-              <li class="list-group-item">Add a Letter</li>
+              <li class="list-group-item"/><a ng-click="addLetter()">Add a Letter</a></li>
             </div>
           </div>
         </ul>

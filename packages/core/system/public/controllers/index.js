@@ -2,8 +2,8 @@
 
 var app = angular.module('mean.system');
 
-app.controller('IndexController', ['$scope', 'Global', '$location', '$state', '$stateParams', 'MeanUser', 'focus', 'MailStops',
-  function($scope, Global, $location, $state, $stateParams, User, focus, MailStops) {
+app.controller('IndexController', ['$scope', 'Global', '$location', '$state', '$stateParams', 'MeanUser', 'focus', 'MailStops', '$modal',
+  function($scope, Global, $location, $state, $stateParams, User, focus, MailStops, $modal) {
     $scope.global = Global;
     $scope.user = User;
 
@@ -35,6 +35,20 @@ app.controller('IndexController', ['$scope', 'Global', '$location', '$state', '$
 
     $scope.msc = $stateParams.msc;
     focus('msc');
+
+    $scope.addLetter = function () {
+      var addLetterModal = $modal.open({
+        animation: true,
+        templateUrl: 'system/views/add-letter.html',
+        controller: 'LetterController'
+      });
+
+      addLetterModal.result.then(function (selectedItem) {
+        $scope.selected = selectedItem;
+      }, function () {
+        $log.info('Modal dismissed at: ' + new Date());
+      });
+    };
   }
 ]);
 
