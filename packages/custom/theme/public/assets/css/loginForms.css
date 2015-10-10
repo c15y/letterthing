@@ -55,7 +55,7 @@ background: url("/theme/assets/img/bg.png");
 }
 
 .main-form {
-    width: 748px;
+    width: 440px;
     height: 435px;
     margin-left: -374px;
 }
@@ -444,6 +444,7 @@ background: url("/theme/assets/img/bg.png");
     padding: 34px 27px;
     min-height: 280px;
     height: auto;
-    width: 465px;
-    margin-left: -232px;
+    width: 440px;
+    //margin-left: -232px;
+    margin-left: -374px;
 }
