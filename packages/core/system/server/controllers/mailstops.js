@@ -50,10 +50,11 @@
 * Load a MailStop by code
 */
 exports.mailStop = function(req, res, next, code) {
-    if (!code || !code.toString().match("^[0-9]{10}$")) {
+    if (!code || !code.toString().match(/^[1-9]+[0-9]*$/g)) {
         res.status(400).json([{
-            msg: 'Invalid MailStop code (must be a 10-digit number)',
-            param: 'code'
+            msg: 'Invalid MailStop code',
+            param: 'code',
+            value: code
         }]);
         return;
     }

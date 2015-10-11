@@ -12,14 +12,29 @@ app.controller('IndexController', ['$scope', 'Global', '$location', '$state', '$
         return;
       }
 
-      if(newValue !== undefined && !newValue.toString().match(/^[0-9]{0,10}$/g)) {
-        $scope.msc = oldValue;
+      var allowValidMSC = function () {
+        var valid = function(msc) {
+          if (msc !== undefined && msc != "" && !msc.match(/^[1-9][0-9]{0,9}$/g)) {
+            return false;
+          }
+          return true;
+        }
+
+        if (valid(newValue)) {
+          return newValue;
+        }
+        else if (valid(oldValue)) {
+          return oldValue;
+        }
+        else {
+          return undefined;
+        }
       }
 
-      var msc = $scope.msc;
+      var msc = $scope.msc = allowValidMSC();
 
       if (msc && msc.length == 10 && msc != oldValue) {
-        $state.go('msc', { "msc": msc});
+        $state.go('msc', { "msc": msc });
       }
 
       if (!msc || msc.length != 10) {
