@@ -1,7 +1,7 @@
 {
   "name": "letterthing",
   "description": "Mail letters to the internet.",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "private": false,
   "author": "c15y <info@c15y.com>",
   "contributors": "https://github.com/orgs/c15y/people",
