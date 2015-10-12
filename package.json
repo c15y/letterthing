@@ -26,7 +26,6 @@
     "bower": "latest",
     "compression": "latest",
     "connect-flash": "latest",
-    "connect-modrewrite": "^0.8.2",
     "consolidate": "latest",
     "cookie-parser": "latest",
     "errorhandler": "latest",
@@ -56,6 +55,7 @@
     "view-helpers": "latest"
   },
   "devDependencies": {
+    "connect-modrewrite": "^0.8.2",
     "del": "latest",
     "expect.js": "latest",
     "gulp-coffee": "latest",
