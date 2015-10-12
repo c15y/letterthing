@@ -20,13 +20,13 @@
     "postinstall": "node tools/scripts/postinstall.js"
   },
   "dependencies": {
-    "connect-modrewrite": "latest",
     "assetmanager": "latest",
     "async": "latest",
     "body-parser": "latest",
     "bower": "latest",
     "compression": "latest",
     "connect-flash": "latest",
+    "connect-modrewrite": "^0.8.2",
     "consolidate": "latest",
     "cookie-parser": "latest",
     "errorhandler": "latest",
