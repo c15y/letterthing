@@ -20,7 +20,6 @@
     "postinstall": "node tools/scripts/postinstall.js"
   },
   "dependencies": {
-    "connect-modrewrite": "latest",
     "assetmanager": "latest",
     "async": "latest",
     "body-parser": "latest",
@@ -56,6 +55,7 @@
     "view-helpers": "latest"
   },
   "devDependencies": {
+    "connect-modrewrite": "latest",
     "del": "latest",
     "expect.js": "latest",
     "gulp-coffee": "latest",
