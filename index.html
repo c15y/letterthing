@@ -13,6 +13,12 @@
     <![endif]-->
     <link rel="shortcut icon" href="images/letterthing.ico">
     <title>Letter Thing</title>
+
+    <script type="text/javascript">
+      function enableLink() {
+        document.getElementById('link').setAttribute("href", "http://letterthing.com");
+      }
+    </script>
   </head>
 
   <body>
@@ -20,14 +26,14 @@
       <div class="inner">
 
         <header>
-          <h1>Letter Th<a href='http://letterthing.com'>i</a>ng</h1>
+          <h1>Letter Th<a id='link'>i</a>ng</h1>
           <h2>Mail letters to the internet.</h2>
         </header>
 
         <br><br>
 
         <section id="main_content">
-          <image class="lt-logo centered" src="images/letterthing.svg"/>
+          <image class="lt-logo centered" src="images/letterthing.svg" onclick="enableLink();"/>
         </section>
 
         <footer>
