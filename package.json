@@ -1,14 +1,13 @@
 {
-  "name": "mean",
-  "description": "MEAN.io: A fullstack JavaScript framework powered by MongoDB, ExpressJS, AngularJS, NodeJS.",
-  "version": "0.5.5",
+  "name": "letterthing",
+  "description": "Mail letters to the internet.",
+  "version": "0.0.1",
   "private": false,
-  "author": "Linnovate <mean@linnovate.net>",
-  "contributors": "https://github.com/linnovate/mean/graphs/contributors",
-  "mean": "0.5.5",
+  "author": "c15y <info@c15y.com>",
+  "contributors": "https://github.com/orgs/c15y/people",
   "repository": {
     "type": "git",
-    "url": "https://github.com/linnovate/mean.git"
+    "url": "https://github.com/c15y/letterthing.git"
   },
   "scripts": {
     "start": "node server",
