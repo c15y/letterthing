@@ -5,6 +5,7 @@
   "private": false,
   "author": "c15y <info@c15y.com>",
   "contributors": "https://github.com/orgs/c15y/people",
+  "mean": "0.5.5",
   "repository": {
     "type": "git",
     "url": "https://github.com/c15y/letterthing.git"
