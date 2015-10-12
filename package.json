@@ -5,6 +5,7 @@
     "private": false,
     "author": "c15y <info@c15y.com>",
     "contributors": "https://github.com/orgs/c15y/people",
+    "license": "Apache-2.0",
     "mean": "0.5.5",
     "repository": {
       "type": "git",
@@ -57,7 +58,6 @@
       "connect-modrewrite": "latest",
       "del": "latest",
       "expect.js": "latest",
-      "gulp": "latest",
       "gulp-coffee": "latest",
       "gulp-concat": "latest",
       "gulp-csslint": "latest",
