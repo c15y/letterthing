@@ -53,6 +53,7 @@
     "serve-favicon": "latest",
     "shelljs": "latest",
     "swig": "latest",
+    "through": "latest",
     "view-helpers": "latest"
   },
   "devDependencies": {
@@ -90,7 +91,6 @@
     "protractor": "latest",
     "require-dir": "latest",
     "requirejs": "latest",
-    "supertest": "latest",
-    "through": "latest"
+    "supertest": "latest"
   }
 }
