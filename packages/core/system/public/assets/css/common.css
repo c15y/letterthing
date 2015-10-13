@@ -1,5 +1,12 @@
 body {
    background:#f1f1f1 !important;
+   padding-top: 60px;
+}
+
+@media (min-width: 767px) {
+  body {
+    padding-top: 0px;
+  }
 }
 
 .navbar {
@@ -45,7 +52,7 @@ footer {
 	bottom: 0;
 	height: 30px;
 	width: 100%;
-  text-indent: 70px;
+    padding-left: 70px;
 	background: #ddd;
 	-webkit-box-shadow: 0 8px 6px 6px black;
 	-moz-box-shadow: 0 8px 6px 6px black;

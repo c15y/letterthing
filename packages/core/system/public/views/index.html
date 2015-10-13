@@ -21,16 +21,16 @@
           </ui-select>
         </div>
       </div>
-      <div class="col-xs-3 col-sm-4">
+      <div class="col-xs-2 col-sm-5">
       </div>
-      <div class="col-xs-3 col-sm-4">
+      <div class="col-xs-4 col-sm-3">
         <div class="list-group">
-          <div ng-show="mailbox && mailbox.letters.length != 0">
-            <a class="list-group-item">Mail an Invitation</a>
-          </div>
           <div ng-show="mailbox">
             <a class="list-group-item">Settings</a>
             <a class="list-group-item">Balance</a>
+            <div ng-show="mailbox.letters.length == 0">
+              <a class="list-group-item">Mail an Invitation</a>
+            </div>
             <div ng-if="user.isOperator">
               <a class="list-group-item" ng-click="addLetter()">Add a Letter</a>
             </div>
