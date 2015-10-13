@@ -20,15 +20,14 @@ var validateUniqueLetterSequence = function(value, callback) {
 };
 
 var LetterSchema = new Schema({
-  mailStop: {
+  mailbox: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'MailStop'
+      ref: 'Mailbox'
   },
   sequence: {
     type: Number,
     unique: true,
     required: true,
-    match: ["/^[0-9]+$/g", "Sequence must be a positive integer"],
     validate: [validateUniqueLetterSequence, "Sequence is already in use"]
   },
   received: {

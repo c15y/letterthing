@@ -64,8 +64,8 @@ angular.module('mean.system').config(['$meanStateProvider', '$urlRouterProvider'
       });
 
     $meanStateProvider
-      .state('msc', {
-        url: '/{msc:[1-9][0-9]\{9\}}',
+      .state('mailbox', {
+        url: '/:code',
         templateUrl: 'system/views/index.html'
       });
 

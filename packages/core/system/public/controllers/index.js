@@ -2,19 +2,19 @@
 
 var app = angular.module('mean.system');
 
-app.controller('IndexController', ['$scope', 'Global', '$location', '$state', '$stateParams', 'MeanUser', 'focus', 'MailStops', '$uibModal',
-  function($scope, Global, $location, $state, $stateParams, User, focus, MailStops, $uibModal) {
+app.controller('IndexController', ['$scope', 'Global', '$location', '$state', '$stateParams', 'MeanUser', 'focus', 'Mailboxes', '$uibModal',
+  function($scope, Global, $location, $state, $stateParams, User, focus, Mailboxes, $uibModal) {
     $scope.global = Global;
     $scope.user = User;
 
-    $scope.$watch('msc', function(newValue, oldValue) {
-      if (oldValue && oldValue.length > 10) {
+    $scope.$watch('code', function(newValue, oldValue) {
+      if (oldValue && oldValue.length > 10 && newValue && newValue.length <= 10) {
         return;
       }
 
-      var allowValidMSC = function () {
-        var valid = function(msc) {
-          if (msc !== undefined && msc != "" && !msc.match(/^[1-9][0-9]{0,9}$/g)) {
+      var allowValidCode = function () {
+        var valid = function(code) {
+          if (code != undefined && code != "" && !code.match(/^[2-9][0-9]{0,9}$/g)) {
             return false;
           }
           return true;
@@ -31,25 +31,28 @@ app.controller('IndexController', ['$scope', 'Global', '$location', '$state', '$
         }
       }
 
-      var msc = $scope.msc = allowValidMSC();
+      var code = $scope.code = allowValidCode();
 
-      if (msc && msc.length == 10 && msc != oldValue) {
-        $state.go('msc', { "msc": msc });
+      if (code && code.length == 10 && code != oldValue) {
+        $state.go('mailbox', { "code": code });
+      }
+      else if (!code || code.length == 0) {
+        $state.go('home');
       }
 
-      if (!msc || msc.length != 10) {
-        $scope.mailStop = undefined;
+      if (!code || code.length != 10) {
+        $scope.mailbox = undefined;
       }
-      else if (!$scope.mailStop || $scope.mailStop.code != msc) {
-        var mailStop = MailStops.get({"code": msc});
-        $scope.mailStop = mailStop;
+      else if (!$scope.mailbox || $scope.mailbox.code != code) {
+        var mailbox = Mailboxes.get({"code": code});
+        $scope.mailbox = mailbox;
       }
 
       $scope.letter = {}
     });
 
-    $scope.msc = $stateParams.msc;
-    focus('msc');
+    $scope.code = $stateParams.code;
+    focus('code');
 
     $scope.addLetter = function () {
       $uibModal.open({
@@ -63,11 +66,11 @@ app.controller('IndexController', ['$scope', 'Global', '$location', '$state', '$
 ]);
 
 app.filter('phone', function() {
-    return function(msc) {
-      if (!msc) { return ''; }
+    return function(code) {
+      if (!code) { return ''; }
 
-      var area = msc.toString().slice(0, 3);
-      var number = msc.toString().slice(3);
+      var area = code.toString().slice(0, 3);
+      var number = code.toString().slice(3);
 
       if (area.length == 3) {
         area = "(" + area + ") ";
