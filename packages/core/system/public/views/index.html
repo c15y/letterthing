@@ -13,12 +13,12 @@
         </ng-pluralize>
         <div ng-show="mailbox && mailbox.letters.length != 0">
           <ui-select multiple ng-model="letter.selected">
-             <ui-select-match placeholder="Select a letter...">{{ $item }}</ui-select-match>
-             <ui-select-choices repeat="letter in mailbox.letters | filter:$select.search">
-               {{ letter }}
-             </ui-select-choices>
-           </ui-select>
-         </div>
+            <ui-select-match placeholder="Select a letter...">{{ $item }}</ui-select-match>
+            <ui-select-choices repeat="letter in mailbox.letters | filter:$select.search">
+              {{ letter }}
+            </ui-select-choices>
+          </ui-select>
+        </div>
       </div>
       <div class="col-xs-3 col-sm-4">
       </div>
