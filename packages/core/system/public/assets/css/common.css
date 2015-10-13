@@ -75,7 +75,8 @@ a.list-group-item {
   cursor: pointer;
 }
 
-.drop-box { border: dotted 3px lightgray; }
+.file-drop-zone { border: dotted 3px lightgray; }
+.nv-file-over { border: dotted 3px red; }
 
 .btn-file {
     position: relative;
