@@ -3,7 +3,8 @@
       <div class="col-xs-6 col-sm-4">
         Phone Number: <em>{{ code | phone }}</em>
         <input type="text" id="code" name="code" class="form-control"
-               ng-model="code" ng-trim="false" focus-on="code" />
+               ng-model="code" ng-trim="false" focus-on="code"
+               ng-keydown="onKeyDown($event)" ng-keyup="onKeyUp($event)"/>
         <br><br>
         <ng-pluralize count="mailbox == undefined ? -1 : mailbox.letters.length"
                        when="{'-1': 'No mailbox selected.',

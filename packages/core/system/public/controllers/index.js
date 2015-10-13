@@ -2,8 +2,8 @@
 
 var app = angular.module('mean.system');
 
-app.controller('IndexController', ['$scope', 'Global', '$location', '$state', '$stateParams', 'MeanUser', 'focus', 'Mailboxes', '$uibModal',
-  function($scope, Global, $location, $state, $stateParams, User, focus, Mailboxes, $uibModal) {
+app.controller('IndexController', ['$scope', 'Global', '$location', '$state', '$stateParams', 'MeanUser', 'focus', 'Mailboxes', '$uibModal', 'Shifted',
+  function($scope, Global, $location, $state, $stateParams, User, focus, Mailboxes, $uibModal, Shifted) {
     $scope.global = Global;
     $scope.user = User;
 
@@ -13,7 +13,7 @@ app.controller('IndexController', ['$scope', 'Global', '$location', '$state', '$
         return;
       }
 
-      var allowValidCode = function () {
+      function allowValidCode() {
         var valid = function(code) {
           if (code != undefined && code != "" && !code.match(/^[2-9][0-9]{0,9}$/g)) {
             return false;
@@ -67,11 +67,15 @@ app.controller('IndexController', ['$scope', 'Global', '$location', '$state', '$
 
     // Event handlers
     $scope.onKeyDown = function ($event) {
-      console.log($event);
+      if ($event.keyCode == 18) { // Alt
+        Shifted.setShifted(true);
+      }
     };
 
     $scope.onKeyUp = function ($event) {
-      console.log($event);
+      if ($event.keyCode == 18) { // Alt
+        Shifted.setShifted(false);
+      }
     };
   }
 ]);

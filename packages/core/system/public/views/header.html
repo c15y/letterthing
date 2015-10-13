@@ -27,7 +27,7 @@
                     <div class="pull-right" mean-token-editable></div>
                     <div class="pull-right" mean-translate></div>
                 </div>
-                <ul class="navbar-nav nav auth-link" ng-show="!hdrctr.hdrvars.authenticated">
+                <ul class="navbar-nav nav auth-link" ng-show="!hdrctr.hdrvars.authenticated && shifted.isShifted()">
                     <!--
                     <li><a ui-sref='auth.register'>Join</a></li>
                     <li class="divider-vertical"></li>
