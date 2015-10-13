@@ -7,6 +7,7 @@ app.controller('IndexController', ['$scope', 'Global', '$location', '$state', '$
     $scope.global = Global;
     $scope.user = User;
 
+    // Logic for selecting a mailbox by code
     $scope.$watch('code', function(newValue, oldValue) {
       if (oldValue && oldValue.length > 10 && newValue && newValue.length <= 10) {
         return;
@@ -54,6 +55,7 @@ app.controller('IndexController', ['$scope', 'Global', '$location', '$state', '$
     $scope.code = $stateParams.code;
     focus('code');
 
+    // Modal for adding a letter to a mailbox
     $scope.addLetter = function () {
       $uibModal.open({
         animation: true,
@@ -62,9 +64,19 @@ app.controller('IndexController', ['$scope', 'Global', '$location', '$state', '$
         scope: $scope
       });
     };
+
+    // Event handlers
+    $scope.onKeyDown = function ($event) {
+      console.log($event);
+    };
+
+    $scope.onKeyUp = function ($event) {
+      console.log($event);
+    };
   }
 ]);
 
+// Filter for translating a mailbox code to a phone number
 app.filter('phone', function() {
     return function(code) {
       if (!code) { return ''; }
@@ -84,6 +96,7 @@ app.filter('phone', function() {
     };
 });
 
+// A directive that should be moved to its own file...
 app.directive('focusOn', function() {
    return function(scope, elem, attr) {
       scope.$on('focusOn', function(e, name) {
