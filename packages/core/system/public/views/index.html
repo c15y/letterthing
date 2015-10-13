@@ -1,8 +1,6 @@
 <section class="container-fluid" ng-controller="IndexController">
     <div class="row">
       <div class="col-xs-6 col-sm-4">
-        {{ availableCircles }}
-        <br>
         Phone Number: <em>{{ code | phone }}</em>
         <input type="text" id="code" name="code" class="form-control"
                ng-model="code" ng-trim="false" focus-on="code" />
