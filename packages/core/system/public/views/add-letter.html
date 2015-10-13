@@ -11,8 +11,8 @@
 
       <div class="row">
         <div class="col-md-2">
-          <span class="btn btn-info btn-file glyphicon glyphicon-picture"> Browse... <input type="file" nv-file-select="" uploader="uploader" multiple />
-          </span>
+          <span class="btn btn-info btn-file glyphicon glyphicon-picture"> Browse... <input type="file" ngf-select ng-model="files" ngf-multiple="true" ngf-pattern="'image/*'" accept="image/*" ngf-max-size="20MB"/></span>
+          <!-- ngf-min-height="100" ngf-resize="{width: 100, height: 100}" -->
         </div>
 
         <div class="col-md-1">
@@ -21,8 +21,7 @@
 
         <div class="col-md-9">
           <div ng-show="uploader.isHTML5">
-            <!-- 3. nv-file-over uploader="link" over-class="className" -->
-            <div class="well file-drop-zone" nv-file-over="" uploader="uploader">
+            <div class="drop-box" ngf-drop ng-model="files" ngf-pattern="'image/*'" accept="image/*" ngf-max-size="20MB">
               <b>Drop Images Here</b>
             </div>
           </div>
@@ -34,8 +33,8 @@
           <thead>
             <tr>
               <th width="25%">Name</th>
-              <th ng-show="uploader.isHTML5">Size</th>
-              <th ng-show="uploader.isHTML5">Progress</th>
+              <th>Size</th>
+              <th>Progress</th>
               <th>Status</th>
               <th>Actions</th>
             </tr>
@@ -48,12 +47,12 @@
                 <!--auto height-->
                 <!--<div ng-thumb="{ file: item.file, width: 100 }"></div>-->
                 <!--auto width-->
-                <div ng-show="uploader.isHTML5" ng-thumb="{ file: item._file, height: 100 }"></div>
+                <div ng-thumb="{ file: item._file, height: 100 }"></div>
                 <!--fixed width and height -->
                 <!--<div ng-thumb="{ file: item.file, width: 100, height: 100 }"></div>-->
               </td>
-              <td ng-show="uploader.isHTML5" nowrap>{{ item.file.size/1024/1024|number:2 }} MB</td>
-              <td ng-show="uploader.isHTML5">
+              <td nowrap>{{ item.file.size/1024/1024|number:2 }} MB</td>
+              <td>
                 <div class="progress" style="margin-bottom: 0;">
                   <div class="progress-bar" role="progressbar" ng-style="{ 'width': item.progress + '%' }"></div>
                 </div>
