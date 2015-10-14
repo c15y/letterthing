@@ -29,7 +29,7 @@
     "bower": "https://registry.npmjs.org/bower/-/bower-1.4.1.tgz",
     "compression": "latest",
     "connect-flash": "latest",
-    "connect-modrewrite": "latest",
+    "connect-modrewrite": "^0.8.2",
     "consolidate": "latest",
     "cookie-parser": "latest",
     "errorhandler": "latest",
