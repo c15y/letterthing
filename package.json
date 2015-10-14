@@ -7,6 +7,9 @@
   "contributors": "https://github.com/orgs/c15y/people",
   "license": "Apache-2.0",
   "mean": "0.5.5",
+  "engines": {
+    "node": "4.1.1"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/c15y/letterthing.git"
@@ -23,7 +26,7 @@
     "assetmanager": "latest",
     "async": "latest",
     "body-parser": "latest",
-    "bower": "latest",
+    "bower": "https://registry.npmjs.org/bower/-/bower-1.4.1.tgz",
     "compression": "latest",
     "connect-flash": "latest",
     "connect-modrewrite": "latest",
