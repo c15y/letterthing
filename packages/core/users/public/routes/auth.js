@@ -2,8 +2,8 @@
 
 //Setting up route
 angular.module('mean.users').config(['$meanStateProvider', '$httpProvider', 'jwtInterceptorProvider',
-  function($meanStateProvider, $httpProvider, jwtInterceptorProvider) {    
-        
+  function($meanStateProvider, $httpProvider, jwtInterceptorProvider) {
+
     jwtInterceptorProvider.tokenGetter = function() {
       return localStorage.getItem('JWT');
     };
@@ -34,7 +34,7 @@ angular.module('mean.users').config(['$meanStateProvider', '$httpProvider', 'jwt
           }
         }
       })
-      .state('forgot-password', {
+      .state('auth.forgot-password', {
         url: '/forgot-password',
         templateUrl: 'users/views/forgot-password.html',
         resolve: {
@@ -43,7 +43,7 @@ angular.module('mean.users').config(['$meanStateProvider', '$httpProvider', 'jwt
           }
         }
       })
-      .state('reset-password', {
+      .state('auth.reset-password', {
         url: '/reset/:tokenId',
         templateUrl: 'users/views/reset-password.html',
         resolve: {

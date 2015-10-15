@@ -56,11 +56,11 @@ background: url("/theme/assets/img/bg.png");
 
 .main-form {
     width: 440px;
-    height: 435px;
+    height: 340px;
 }
 
 .main-form.register-form {
-    height: 535px;
+    height: 515px;
 }
 
 .login-form__left {
@@ -246,7 +246,7 @@ background: url("/theme/assets/img/bg.png");
 }
 
 .button_send p {
-    margin-left: 65px;
+//    margin-left: 65px;
 }
 
 .button_register {
@@ -444,6 +444,4 @@ background: url("/theme/assets/img/bg.png");
     min-height: 280px;
     height: auto;
     width: 440px;
-    //margin-left: -232px;
-    margin-left: -374px;
 }
