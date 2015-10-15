@@ -15,6 +15,7 @@ module.exports = {
   app: {
     name: 'Letter Thing - Development'
   },
+  s3Bucket: "letterthing-dev",
   strategies: {
     local: {
       enabled: true

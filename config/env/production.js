@@ -33,6 +33,7 @@ module.exports = {
   logging: {
     format: 'combined'
   },
+  s3Bucket: "letterthing",
   strategies: {
     local: {
       enabled: true
