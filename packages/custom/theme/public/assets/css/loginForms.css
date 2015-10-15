@@ -50,18 +50,17 @@ background: url("/theme/assets/img/bg.png");
     background: #ffffff;
     box-shadow: 0 1px 3px 1px #003644;
     margin-top: 35px;
-    left: 50%;
+    left: 10%;
     position: relative;
 }
 
 .main-form {
     width: 440px;
     height: 435px;
-    margin-left: -374px;
 }
 
 .main-form.register-form {
-    height: 622px;
+    height: 535px;
 }
 
 .login-form__left {
