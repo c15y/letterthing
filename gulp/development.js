@@ -66,7 +66,7 @@ gulp.task('devServe', ['env:development'], function () {
     stdout: false
   }).on('readable', function() {
     this.stdout.on('data', function(chunk) {
-      if(/Mean app started/.test(chunk)) {
+      if(/Letter Thing started/.test(chunk)) {
         setTimeout(function() { plugins.livereload.reload(); }, 500);
       }
       process.stdout.write(chunk);
