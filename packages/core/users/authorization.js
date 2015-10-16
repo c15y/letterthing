@@ -45,6 +45,21 @@ exports.requiresAdmin = function(req, res, next) {
   });
 };
 
+exports.requiresOperator = function(req, res, next) {
+  if (!req.isAuthenticated()) {
+    return res.status(401).send('User is not authenticated');
+  }
+  findUser(req.user._id, function(user) {
+      if (!user) return res.status(401).send('User is not authorized');
+
+      if (req.user.roles.indexOf('operator') === -1 &&
+        req.user.roles.indexOf('manager') === -1 &&
+        req.user.roles.indexOf('admin') === -1) return res.status(401).send('User is not authorized');
+      req.user = user;
+      next();
+  });
+};
+
 /**
  * Generic validates if the first parameter is a mongo ObjectId
  */
