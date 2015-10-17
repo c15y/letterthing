@@ -1,13 +1,10 @@
 <section class="container-fluid modal-lg" nv-file-drop="" uploader="uploader">
 
     <div class="modal-header">
-        <h2 class="modal-title">Add a Letter</h2>
+        <h2 class="modal-title">Upload a Letter</h2>
     </div>
 
     <div class="modal-body">
-      <div class="row">
-        <h3>Upload Images</h3>
-      </div>
 
       <div class="row">
         <div class="col-md-2">
@@ -101,7 +98,7 @@
     </div>
 
     <div class="modal-footer">
-      <button class="btn btn-primary" type="button" ng-click="submit()" ><span class="glyphicon glyphicon-ok"></span> Add Letter</button>
+      <button class="btn btn-primary" type="button" ng-click="submit()" ng-disabled="!uploader.queue.length || uploader.queue.length != uploader.getReadyItems().length"><span class="glyphicon glyphicon-ok"></span> Upload Letter</button>
       <button class="btn btn-warning" type="button" ng-click="cancel()"><span class="glyphicon glyphicon-ban-circle"></span> Cancel</button>
     </div>
 
