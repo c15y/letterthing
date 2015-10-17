@@ -15,17 +15,12 @@ var MailboxSchema = new Schema({
     required: true
   },
   name: { type: String },
-  address: {
-    street1: { type: String, uppercase: true, trim: true, required: true },
-    street1: { type: String, uppercase: true, trim: true, },
-    city: { type: String, uppercase: true, trim: true, required: true},
-    state: { type: String, uppercase: true, trim: true, match: StateRegEx, required: true },
-    zip: { type: String, match: ZipRegEx }
-  },
   letters: [{
     operator: { type: String, match: PhoneRegEx, required: true },
     direction: { type: String, enum: ['incoming', 'outgoing'], required: true },
     created: { type: Date, required: true },
+    rendered: { type: Date, required: true },
+    alarm: Date,
     mailed: Date,
     address: {
       street1: { type: String, uppercase: true, trim: true, required: true },
@@ -34,32 +29,59 @@ var MailboxSchema = new Schema({
       state: { type: String, uppercase: true, trim: true, match: StateRegEx, required: true },
       zip: { type: String, match: ZipRegEx, required: true }
     },
-    passcode: { type: String, uppercase: true, match: PasscodeRegEx },
-    infoPages: {
+    title: String,
+    summary: String,
+    note: { type: String, private: true },
+    tags: [ String ],
+    passcode: { type: String, uppercase: true, match: PasscodeRegEx, private: true },
+    envelope: {
+      front: {
+        type: {
+          image: { type: String, required: true },
+          text: String,
+          caption: String,
+          summary: String,
+          note: { type: String, private: true }
+        },
+        required: true
+      },
+      back: {
+        type: {
+          image: { type: String, required: true },
+          text: String,
+          caption: String,
+          summary: String,
+          note: { type: String, private: true }
+        },
+        required: true
+      }
+    },
+    coverPages: {
       type: [{
-        image: {
-          data: Buffer,
-          contentType: String
-        }
+        image: { type: String, required: true },
+        text: String,
+        note: String,
+        processed: Date
       }],
       private: true
     },
-    publicPages: [{
-      image: {
-        data: Buffer,
-        contentType: String
-      }
+    pages: [{
+      image: { type: String, required: true },
+      text: String,
+      caption: String,
+      summary: String,
+      note: String
     }],
-    paymentPages: {
+    payments: {
       type: [{
-        image: {
-          data: Buffer,
-          contentType: String
-        },
-        amount: Number,
-        type: { type: String, enum: ['checks', 'stripe'] },
-        ref: { type: String, required: false },
-        cleared: { type: Date, required: false }
+        image: { type: String, required: true },
+        text: String,
+        amount: { type: Number, required: true },
+        type: { type: String, enum: ['check', 'stripe'], required: true },
+        ref: { type: String, required: true },
+        note: String,
+        mailed: Date,
+        deposited: Date
       }],
       private: true
     },
@@ -70,6 +92,7 @@ var MailboxSchema = new Schema({
       user: { type: Schema.Types.ObjectId, unique: true, required: true },
       office: { type: String, match: PhoneRegEx, required: true }
     },
+    private: true,
     sparse: true
   }
 });
