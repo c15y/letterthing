@@ -38,7 +38,7 @@ app.controller('IndexController', ['$scope', 'Global', '$location', '$state', '$
         $state.go('mailbox', { "code": code });
       }
       else if (!code || code.length == 0) {
-        $state.go('home');
+//        $state.go('home');
       }
 
       if (!code || code.length != 10) {
