@@ -34,19 +34,21 @@ app.controller('IndexController', ['$scope', 'Global', '$location', '$state', '$
 
       var code = $scope.code = allowValidCode();
 
-      if (code && code.length == 10 && code != oldValue) {
+      if (code && code.length == 10 && code != oldValue &&
+        !$state.is('mailbox', { "code": code })) {
         $state.go('mailbox', { "code": code });
       }
-
-      if (!code || code.length != 10) {
-        $scope.mailbox = undefined;
-      }
-      else if (!$scope.mailbox) {
-        Mailboxes.get({"code": code}, function(data) {
-          $scope.mailbox = data;
-        }, function() {
-          $scope.mailbox = { _id: code, letters: [] }
-        });
+      else {
+        if (!code || code.length != 10) {
+          $scope.mailbox = undefined;
+        }
+        else if (!$scope.mailbox) {
+          Mailboxes.get({"code": code}, function(data) {
+            $scope.mailbox = data;
+          }, function() {
+            $scope.mailbox = { _id: code, letters: [] }
+          });
+        }
       }
 
       $scope.letter = {}
