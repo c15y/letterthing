@@ -98,36 +98,4 @@ var MailboxSchema = new Schema({
   }
 });
 
-/*
-
-MailboxSchema.virtual('letters.pages.image.buffer').get(function () {
-
-});
-
-MailboxSchema.virtual('letters.pages.image.contentType').get(function () {
-
-});
-
-MailboxSchema.virtual('phone').get(function () {
-  return this._id...
-});
-
-MailboxSchema.virtual('phone').set(function (phone) {
-  this._id = phone... ?
-});
-
-MailboxSchema.virtual('balance').get(function () {
-
-});
-
-MailboxSchema.virtual('letters.balance').get(function () {
-
-});
-
-MailboxSchema.virtual('address').get(function () {
-
-});
-
-*/
-
 exports.Mailbox = mongoose.model('Mailbox', MailboxSchema);
