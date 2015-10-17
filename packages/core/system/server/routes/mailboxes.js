@@ -21,5 +21,6 @@ module.exports = function(System, app, auth, database) {
     // app.delete('/api/mailboxes/:code', auth.requiresAdmin, mailboxes.delete);
 
     restify.serve(app, Mailbox);
+
     restify.serve(app, Letter);
 };

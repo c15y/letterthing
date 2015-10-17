@@ -7,10 +7,16 @@ var mongoose  = require('mongoose'),
 
 var StateRegEx = /^((A[LKZR])|(C[AOT])|(D[EC])|(FL)|(GA)|(HI)|(I[DLNA])|(K[SY])|(LA)|(M[EDAINSOT])|(N[EVHJMYCD])|(O[HKR])|(PA)|(RI)|(S[CD])|(T[NX])|(UT)|(V[TA])|(W[AVIY]))$/;
 var ZipRegEx = /^[0-9]{5}(?:-[0-9]{4})?$/;
+var PasscodeRegEx = /^[A-Z]+$/;
 
 var LetterSchema = new Schema({
-  operator: { type: String, index: true, match: modelUtils.PhoneRegEx },
-  received: { type: Date },
+  direction: { type: String, enum: ['incoming', 'outgoing'] },
+  workflow: [{
+    operator: { type: String, match: modelUtils.PhoneRegEx },
+    timestamp: Date,
+    state: { type: String, enum: ['created', 'stored', 'mailed', 'destroyed'] },
+    text: { type: String, required: false }
+  }],
   address: {
       street1: { type: String, uppercase: true, trim: true },
       street1: { type: String, uppercase: true, trim: true, required: false },
@@ -18,7 +24,8 @@ var LetterSchema = new Schema({
       state: { type: String, uppercase: true, trim: true, match: StateRegEx },
       zip: { type: String, match: ZipRegEx },
   },
-  infoages: {
+  passcode: { type: String, required: false, uppercase: true, match: PasscodeRegEx },
+  infoPages: {
     type: [{
       image: {
         data: Buffer,
@@ -43,18 +50,14 @@ var LetterSchema = new Schema({
         data: Buffer,
         contentType: String
       },
-      ref: String
+      amount: Number,
+      type: { type: String, enum: ['checks', 'stripe'] },
+      ref: { type: String, required: false }
     }],
     required: false,
     private: true
   },
-  returned: { type: Date, required: false },
-  shredded: { type: Date, required: false },
-  notes: [{
-    operator: { type: String, match: modelUtils.PhoneRegEx },
-    text: String,
-    timestamp: Date
-  }]
+  cost: Number
 });
 
 modelUtils.allFieldsRequiredByDefautlt(LetterSchema);

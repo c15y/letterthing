@@ -13,14 +13,11 @@ var MailboxSchema = new Schema({
   },
   name: { type: String, required: false },
   letters: [ mongoose.model('Letter').schema ],
-  office: {
-    type: Boolean,
-    required: false,
-    sparse: true
-  },
-  user: {
-    type: Schema.Types.ObjectId,
-    unique: true,
+  operator: {
+    type: {
+      user: { type: Schema.Types.ObjectId, unique: true },
+      office: { type: String, match: modelUtils.PhoneRegEx }
+    },
     required: false,
     sparse: true
   }
