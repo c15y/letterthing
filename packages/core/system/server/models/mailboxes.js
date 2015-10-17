@@ -2,31 +2,30 @@
 
 var mongoose  = require('mongoose'),
      Schema   = mongoose.Schema,
-          _   = require('lodash');
-
-var validateUniqueMailboxCode = function(value, callback) {
-  var Mailbox = mongoose.model('Mailbox');
-  Mailbox.find({
-    $and: [{
-      code: value
-    }, {
-      _id: {
-        $ne: this._id
-      }
-    }]
-  }, function(err, mailbox) {
-    callback(err || mailbox.length === 0);
-  });
-};
+          _   = require('lodash'),
+   modelUtils = require('./model-utils');
 
 var MailboxSchema = new Schema({
-  code: {
+  _id: {
     type: String,
     unique: true,
-    required: true,
-    validate: [validateUniqueMailboxCode, "Code is already in use"]
+    match: modelUtils.PhoneRegEx
   },
-  letters: [ mongoose.model('Letter').schema ]
+  name: { type: String, required: false },
+  letters: [ mongoose.model('Letter').schema ],
+  office: {
+    type: Boolean,
+    required: false,
+    sparse: true
+  },
+  user: {
+    type: Schema.Types.ObjectId,
+    unique: true,
+    required: false,
+    sparse: true
+  }
 });
+
+modelUtils.allFieldsRequiredByDefautlt(MailboxSchema);
 
 exports.Mailbox = mongoose.model('Mailbox', MailboxSchema);

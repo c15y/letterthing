@@ -34,6 +34,7 @@
     "cookie-parser": "latest",
     "errorhandler": "latest",
     "express": "latest",
+    "express-restify-mongoose": "latest",
     "forever": "latest",
     "gridfs-stream": "latest",
     "gulp": "latest",

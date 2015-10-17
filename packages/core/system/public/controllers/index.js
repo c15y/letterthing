@@ -44,7 +44,7 @@ app.controller('IndexController', ['$scope', 'Global', '$location', '$state', '$
       if (!code || code.length != 10) {
         $scope.mailbox = undefined;
       }
-      else if (!$scope.mailbox || $scope.mailbox.code != code) {
+      else if (!$scope.mailbox) {
         var mailbox = Mailboxes.get({"code": code});
         $scope.mailbox = mailbox;
       }

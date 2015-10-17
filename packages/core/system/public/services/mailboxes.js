@@ -2,7 +2,7 @@
 
 angular.module('mean.system').factory('Mailboxes', ['$resource',
   function($resource) {
-    return $resource('/api/mailboxes/:code', {
+    return $resource('/api/v1/mailboxes/:code', {
       code: '@code'
     }, {
       create: {
