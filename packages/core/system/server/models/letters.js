@@ -10,13 +10,10 @@ var ZipRegEx = /^[0-9]{5}(?:-[0-9]{4})?$/;
 var PasscodeRegEx = /^[A-Z]+$/;
 
 var LetterSchema = new Schema({
+  operator: { type: String, match: modelUtils.PhoneRegEx },
   direction: { type: String, enum: ['incoming', 'outgoing'] },
-  workflow: [{
-    operator: { type: String, match: modelUtils.PhoneRegEx },
-    timestamp: Date,
-    state: { type: String, enum: ['created', 'stored', 'mailed', 'destroyed'] },
-    text: { type: String, required: false }
-  }],
+  created: Date,
+  mailed: { type: Date, required: false },
   address: {
       street1: { type: String, uppercase: true, trim: true },
       street1: { type: String, uppercase: true, trim: true, required: false },
@@ -52,12 +49,13 @@ var LetterSchema = new Schema({
       },
       amount: Number,
       type: { type: String, enum: ['checks', 'stripe'] },
-      ref: { type: String, required: false }
+      ref: { type: String, required: false },
+      cleared: { type: Date, required: false }
     }],
     required: false,
     private: true
   },
-  cost: Number
+  cost: { type: Number, required: false }
 });
 
 modelUtils.allFieldsRequiredByDefautlt(LetterSchema);
