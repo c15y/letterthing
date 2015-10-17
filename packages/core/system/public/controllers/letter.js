@@ -27,7 +27,7 @@ angular.module('mean.system').controller('LetterController', ['$scope', '$modalI
       console.info('onWhenAddingFileFailed', item, filter, options);
     };
     uploader.onAfterAddingFile = function(fileItem) {
-      fileItem.url = '/api/mailboxes/' + $scope.code;
+      fileItem.url = '/api/v1/mailboxes/' + $scope.code;
       console.info('onAfterAddingFile', fileItem);
     };
     uploader.onAfterAddingAll = function(addedFileItems) {
