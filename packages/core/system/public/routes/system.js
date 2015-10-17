@@ -51,8 +51,8 @@ angular.module('mean.system').config(['$meanStateProvider', '$urlRouterProvider'
   function($meanStateProvider, $urlRouterProvider) {
 
     $meanStateProvider
-      .state('home', {
-        url: '/',
+      .state('mailbox', {
+        url: '/:code',
         templateUrl: 'system/views/index.html'
       });
 
@@ -61,12 +61,6 @@ angular.module('mean.system').config(['$meanStateProvider', '$urlRouterProvider'
         controller: function () {
           window.location = '/logout';
         }
-      });
-
-    $meanStateProvider
-      .state('mailbox', {
-        url: '/:code',
-        templateUrl: 'system/views/index.html'
       });
 
     $urlRouterProvider.otherwise('/');

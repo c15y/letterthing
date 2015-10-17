@@ -37,9 +37,6 @@ app.controller('IndexController', ['$scope', 'Global', '$location', '$state', '$
       if (code && code.length == 10 && code != oldValue) {
         $state.go('mailbox', { "code": code });
       }
-      else if (!code || code.length == 0) {
-//        $state.go('home');
-      }
 
       if (!code || code.length != 10) {
         $scope.mailbox = undefined;
