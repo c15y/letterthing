@@ -1,11 +1,12 @@
 'use strict';
 
 var mongoose  = require('mongoose'),
-     Schema   = mongoose.Schema,
-   PhoneRegEx = /^[2-9][0-9]{0,9}$/,
-   StateRegEx = /^((A[LKZR])|(C[AOT])|(D[EC])|(FL)|(GA)|(HI)|(I[DLNA])|(K[SY])|(LA)|(M[EDAINSOT])|(N[EVHJMYCD])|(O[HKR])|(PA)|(RI)|(S[CD])|(T[NX])|(UT)|(V[TA])|(W[AVIY]))$/,
-     ZipRegEx = /^[0-9]{5}(?:-[0-9]{4})?$/,
-PasscodeRegEx = /^[A-Z]+$/;
+     Schema   = mongoose.Schema;
+
+var PhoneRegEx = /^[2-9][0-9]{0,9}$/,
+    StateRegEx = /^((A[LKZR])|(C[AOT])|(D[EC])|(FL)|(GA)|(HI)|(I[DLNA])|(K[SY])|(LA)|(M[EDAINSOT])|(N[EVHJMYCD])|(O[HKR])|(PA)|(RI)|(S[CD])|(T[NX])|(UT)|(V[TA])|(W[AVIY]))$/,
+      ZipRegEx = /^[0-9]{5}(?:-[0-9]{4})?$/,
+ PasscodeRegEx = /^[A-Z]+$/;
 
 var MailboxSchema = new Schema({
   _id: {
