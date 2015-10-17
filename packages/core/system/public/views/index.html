@@ -6,7 +6,7 @@
                ng-model="code" ng-trim="false" focus-on="code"
                ng-keydown="onKeyDown($event)" ng-keyup="onKeyUp($event)"/>
         <br><br>
-        <ng-pluralize count="mailbox == undefined ? -1 : mailbox.letters.length"
+        <ng-pluralize count="!mailbox ? -1 : mailbox.letters.length"
                        when="{'-1': 'No mailbox selected.',
                                '0': 'No letters found.',
                              'one': 'One letter found.',

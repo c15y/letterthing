@@ -2,8 +2,8 @@
 
 var app = angular.module('mean.system');
 
-app.controller('IndexController', ['$scope', 'Global', '$location', '$state', '$stateParams', 'MeanUser', 'focus', 'Mailboxes', '$uibModal', 'Shifted',
-  function($scope, Global, $location, $state, $stateParams, User, focus, Mailboxes, $uibModal, Shifted) {
+app.controller('IndexController', ['$scope', 'Global', '$location', '$state', '$stateParams', 'MeanUser', 'focus', 'Mailboxes', '$uibModal', 'Shifted', '$q',
+  function($scope, Global, $location, $state, $stateParams, User, focus, Mailboxes, $uibModal, Shifted, $q) {
     $scope.global = Global;
     $scope.user = User;
 
@@ -42,8 +42,11 @@ app.controller('IndexController', ['$scope', 'Global', '$location', '$state', '$
         $scope.mailbox = undefined;
       }
       else if (!$scope.mailbox) {
-        var mailbox = Mailboxes.get({"code": code});
-        $scope.mailbox = mailbox;
+        Mailboxes.get({"code": code}, function(data) {
+          $scope.mailbox = data;
+        }, function() {
+          $scope.mailbox = { _id: code, letters: [] }
+        });
       }
 
       $scope.letter = {}
