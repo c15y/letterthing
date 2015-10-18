@@ -54,6 +54,7 @@
     "passport-twitter": "latest",
     "q": "latest",
     "request": "latest",
+    "s3": "latest",
     "serve-favicon": "latest",
     "shelljs": "latest",
     "swig": "latest",

@@ -60,5 +60,6 @@ module.exports = {
       pass: 'PASSWORD'
     }
   },
-  secret: 'SOME_TOKEN_SECRET'
+  secret: 'SOME_TOKEN_SECRET',
+  s3Bucket: 'letterthing-dev'
 };
