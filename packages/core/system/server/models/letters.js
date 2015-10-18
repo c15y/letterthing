@@ -24,57 +24,35 @@ var LetterSchema = new Schema({
     state: { type: String, uppercase: true, trim: true, match: StateRegEx, required: true },
     zip: { type: String, match: ZipRegEx, required: true }
   },
-  title: String,
+  subject: String,
   summary: String,
   note: { type: String, private: true },
   tags: [ String ],
   passcode: { type: String, uppercase: true, match: PasscodeRegEx, private: true },
   envelope: {
-    front: {
-      type: {
-        image: { type: Schema.Types.ObjectId, required: true },
-        text: String,
-        caption: String,
-        summary: String,
-        note: { type: String, private: true }
-      },
-      required: true
-    },
-    back: {
-      type: {
-        image: { type: Schema.Types.ObjectId, required: true },
-        text: String,
-        caption: String,
-        summary: String,
-        note: { type: String, private: true }
-      },
-      required: true
-    }
+    front: { type: Schema.Types.ObjectId, required: true },
+    back: { type: Schema.Types.ObjectId, required: true }
   },
-  coverPages: {
+  handling: {
     type: [{
-      image: { type: Schema.Types.ObjectId, required: true },
-      text: String,
-      note: String,
-      processed: Date
+      page: { type: Schema.Types.ObjectId, required: true },
+      signature: {
+        x: { type: Number, required: true },
+        y: { type: Number, required: true },
+        w: { type: Number, required: true },
+        h: { type: Number, required: true }
+      },
+      handled: Date
     }],
     private: true
   },
-  pages: [{
-    image: { type: Schema.Types.ObjectId, required: true },
-    text: String,
-    caption: String,
-    summary: String,
-    note: String
-  }],
+  pages: { type: [Schema.Types.ObjectId], required: true },
   payments: {
     type: [{
-      image: { type: Schema.Types.ObjectId, required: true },
-      text: String,
+      page: { type: Schema.Types.ObjectId, required: true },
       amount: { type: Number, required: true },
       type: { type: String, enum: ['check', 'epayment'], required: true },
       ref: { type: String, required: true },
-      note: String,
       mailed: Date,
       deposited: Date
     }],

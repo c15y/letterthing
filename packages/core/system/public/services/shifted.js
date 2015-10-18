@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('mean.users').factory('Shifted', function() {
+angular.module('mean.system').factory('Shifted', function() {
 
   function ShiftedKlass() {
       this.shifted = false;
