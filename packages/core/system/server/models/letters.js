@@ -12,17 +12,20 @@ var StateRegEx = /^((A[LKZR])|(C[AOT])|(D[EC])|(FL)|(GA)|(HI)|(I[DLNA])|(K[SY])|
 var LetterSchema = new Schema({
   operator: { type: String, match: ModelUtils.PhoneRegEx, required: true },
   direction: { type: String, enum: ['incoming', 'outgoing'], required: true },
-  created: { type: Date, required: true },
-  rendered: { type: Date, required: true },
+  created: { type: Date, default: Date.now, required: true },
+  rendered: { type: Date, default: Date.now, required: true },
   inre: Schema.Types.ObjectId,
   alarm: Date,
   mailed: Date,
   address: {
-    street1: { type: String, uppercase: true, trim: true, required: true },
-    street1: { type: String, uppercase: true, trim: true, },
-    city: { type: String, uppercase: true, trim: true, required: true},
-    state: { type: String, uppercase: true, trim: true, match: StateRegEx, required: true },
-    zip: { type: String, match: ZipRegEx, required: true }
+    type: {
+      street1: { type: String, uppercase: true, trim: true, required: true },
+      street1: { type: String, uppercase: true, trim: true, },
+      city: { type: String, uppercase: true, trim: true, required: true},
+      state: { type: String, uppercase: true, trim: true, match: StateRegEx, required: true },
+      zip: { type: String, match: ZipRegEx, required: true }
+    },
+    required: false
   },
   subject: String,
   summary: String,
@@ -46,7 +49,7 @@ var LetterSchema = new Schema({
     }],
     private: true
   },
-  pages: { type: [Schema.Types.ObjectId], required: true },
+  pages: { type: [Schema.Types.ObjectId], required: false },
   payments: {
     type: [{
       page: { type: Schema.Types.ObjectId, required: true },

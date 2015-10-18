@@ -30,6 +30,7 @@
     "compression": "latest",
     "connect-flash": "latest",
     "connect-modrewrite": "latest",
+    "connect-multiparty": "latest",
     "consolidate": "latest",
     "cookie-parser": "latest",
     "errorhandler": "latest",

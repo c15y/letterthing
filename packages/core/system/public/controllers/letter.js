@@ -1,61 +1,43 @@
 'use strict';
 
-angular.module('mean.system').controller('LetterController', ['$scope', '$modalInstance',  'FileUploader', 'Letter',
-  function($scope, $modalInstance, FileUploader, Letter) {
+angular.module('mean.system').controller('LetterController', ['$scope', '$modalInstance',  'FileUploader', 'Mailboxes', 'Letter',
+  function($scope, $modalInstance, FileUploader, Mailboxes, Letter) {
+
+    $scope.Letter = Letter;
 
     var uploader = $scope.uploader = new FileUploader({
       url: '(URL is set dynamically in onAfterAddingFile)'
     });
+
+    Letter.allFiles = function() {
+      return $scope.uploader.queue;
+    }
 
     uploader.filters.push({
       name: 'imageFilter',
       fn: function(item /*{File|FileLikeObject}*/, options) {
         var type = '|' + item.type.slice(item.type.lastIndexOf('/') + 1) + '|';
         return '|jpg|jpeg|'.indexOf(type) !== -1;
+        // |jpg|png|jpeg|bmp|gif|
       }
     });
 
     $scope.submit = function () {
+      var mailbox = $scope.mailbox;
+      var letter = $scope.Letter.newLetter(mailbox)
+      mailbox.letters.push(letter);
+      Mailboxes.save(mailbox);
       $modalInstance.close();
     };
 
     $scope.cancel = function () {
+      $scope.uploader.cancelAll();
       $modalInstance.dismiss('cancel');
     };
 
-    uploader.onWhenAddingFileFailed = function(item /*{File|FileLikeObject}*/, filter, options) {
-      console.info('onWhenAddingFileFailed', item, filter, options);
-    };
     uploader.onAfterAddingFile = function(fileItem) {
-      fileItem.url = '/api/v1/mailboxes/' + $scope.code;
-      console.info('onAfterAddingFile', fileItem);
-    };
-    uploader.onAfterAddingAll = function(addedFileItems) {
-      console.info('onAfterAddingAll', addedFileItems);
-    };
-    uploader.onBeforeUploadItem = function(item) {
-      console.info('onBeforeUploadItem', item);
-    };
-    uploader.onProgressItem = function(fileItem, progress) {
-      console.info('onProgressItem', fileItem, progress);
-    };
-    uploader.onProgressAll = function(progress) {
-      console.info('onProgressAll', progress);
-    };
-    uploader.onSuccessItem = function(fileItem, response, status, headers) {
-      console.info('onSuccessItem', fileItem, response, status, headers);
-    };
-    uploader.onErrorItem = function(fileItem, response, status, headers) {
-      console.info('onErrorItem', fileItem, response, status, headers);
-    };
-    uploader.onCancelItem = function(fileItem, response, status, headers) {
-      console.info('onCancelItem', fileItem, response, status, headers);
-    };
-    uploader.onCompleteItem = function(fileItem, response, status, headers) {
-      console.info('onCompleteItem', fileItem, response, status, headers);
-    };
-    uploader.onCompleteAll = function() {
-      console.info('onCompleteAll');
+      fileItem._id = ObjectId();
+      fileItem.url = '/api/v1/images/' + $scope.Letter._id + '/' + fileItem._id;
     };
   }]);
 

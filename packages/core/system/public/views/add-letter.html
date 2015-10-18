@@ -98,7 +98,7 @@
     </div>
 
     <div class="modal-footer">
-      <button class="btn btn-primary" type="button" ng-click="submit()" ng-disabled="!uploader.queue.length || uploader.queue.length != uploader.getReadyItems().length"><span class="glyphicon glyphicon-ok"></span> Upload Letter</button>
+      <button class="btn btn-primary" type="button" ng-click="submit()" ng-disabled="!uploader.queue.length || uploader.getNotUploadedItems().length"><span class="glyphicon glyphicon-ok"></span> Upload Letter</button>
       <button class="btn btn-warning" type="button" ng-click="cancel()"><span class="glyphicon glyphicon-ban-circle"></span> Cancel</button>
     </div>
 
