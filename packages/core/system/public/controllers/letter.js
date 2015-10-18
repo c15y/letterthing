@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('mean.system').controller('LetterController', ['$scope', '$modalInstance',  'FileUploader',
-  function($scope, $modalInstance, FileUploader) {
+angular.module('mean.system').controller('LetterController', ['$scope', '$modalInstance',  'FileUploader', 'Letter',
+  function($scope, $modalInstance, FileUploader, Letter) {
 
     var uploader = $scope.uploader = new FileUploader({
       url: '(URL is set dynamically in onAfterAddingFile)'

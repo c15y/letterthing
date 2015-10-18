@@ -14,6 +14,7 @@
     "angular-ui-select": "latest",
     "angular-sanitize": "latest",
     "angular-file-upload": "latest",
-    "Sortable": "~1.4.1"
+    "Sortable": "latest",
+    "objectid.js": "latest"
   }
 }

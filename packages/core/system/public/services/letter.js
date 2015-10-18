@@ -1,11 +1,9 @@
 'use strict';
 
-var ObjectID = require('./objectid');
-
 angular.module('mean.system').factory('Letter', function() {
 
   function LetterKlass() {
-      this._id = ObjectID.generate();
+      this._id = ObjectId();
       this.allPages = [];
       this.pagesStart = 3;
       this.paymentsStart = undefined;

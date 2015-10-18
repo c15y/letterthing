@@ -21,7 +21,8 @@
         "bower_components/web-bootstrap/index.js",
         "bower_components/angular-file-upload/dist/angular-file-upload.min.js",
         "bower_components/Sortable/Sortable.min.js",
-        "bower_components/Sortable/ng-sortable.js"
+        "bower_components/Sortable/ng-sortable.js",
+        "bower_components/objectid.js/src/main/javascript/ObjectId.js"
       ]
     }
   }

@@ -1,0 +1,26 @@
+{
+  "name": "objectid.js",
+  "version": "1.0.1",
+  "homepage": "https://github.com/DeadHeadRussell/ObjectId.js",
+  "authors": [
+    "Justin Dearing <zippy1981@gmail.com>",
+    "Andrew Russell <deadhead.russell@gmail.com>"
+  ],
+  "description": "A javascript implementation of a BSON ObjectId.",
+  "main": "./src/main/javascript/Objectid.js",
+  "moduleType": [
+    "globals",
+    "node"
+  ],
+  "keywords": [
+    "objectid",
+    "bson"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
