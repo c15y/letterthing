@@ -36,8 +36,7 @@ angular.module('mean.system').controller('LetterController', ['$scope', '$modalI
     };
 
     uploader.onAfterAddingFile = function(fileItem) {
-      fileItem._id = ObjectId();
-      fileItem.url = '/api/v1/images/' + $scope.Letter._id + '/' + fileItem._id;
+      fileItem.url = '/api/v1/images/' + $scope.Letter._id + '/' + ObjectId();
     };
   }]);
 
