@@ -62,7 +62,7 @@ app.controller('IndexController', ['$scope', 'Global', '$location', '$state', '$
       $uibModal.open({
         animation: true,
         templateUrl: 'system/views/upload.html',
-        controller: 'LetterController',
+        controller: 'UploadController',
         scope: $scope
       });
     };

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('mean.system').controller('LetterController', ['$scope', '$modalInstance',  'FileUploader', 'Mailboxes', 'Letter', 'lodash',
+angular.module('mean.system').controller('UploadController', ['$scope', '$modalInstance',  'FileUploader', 'Mailboxes', 'Letter', 'lodash',
   function($scope, $modalInstance, FileUploader, Mailboxes, Letter, _) {
 
     $scope.Letter = Letter;
