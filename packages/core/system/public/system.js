@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('mean.system', ['ui.router', 'mean-factory-interceptor', 'angularFileUpload', 'ng-sortable'])
+angular.module('mean.system', ['ui.router', 'mean-factory-interceptor', 'angularFileUpload', 'ng-sortable', 'ngLodash'])
   .run(['$rootScope', function($rootScope) {
     $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
       var toPath = toState.url;

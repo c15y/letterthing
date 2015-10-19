@@ -15,6 +15,7 @@
     "angular-sanitize": "latest",
     "angular-file-upload": "latest",
     "Sortable": "latest",
-    "objectid.js": "latest"
+    "objectid.js": "latest",
+    "ng-lodash": "latest"
   }
 }

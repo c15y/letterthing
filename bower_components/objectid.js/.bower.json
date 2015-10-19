@@ -30,7 +30,6 @@
     "commit": "10145020e0cbbdfbf19d0e9023f86e1d382abaeb"
   },
   "_source": "git://github.com/DeadHeadRussell/ObjectId.js.git",
-  "_target": "~1.0.1",
-  "_originalSource": "objectid.js",
-  "_direct": true
+  "_target": "*",
+  "_originalSource": "objectid.js"
 }

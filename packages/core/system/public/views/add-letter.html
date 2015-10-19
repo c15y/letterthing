@@ -1,4 +1,4 @@
-<section class="container-fluid modal-lg" nv-file-drop="" uploader="uploader">
+<section class="container-fluid modal-lg" nv-file-drop="" uploader="mainUploader">
 
     <div class="modal-header">
         <h2 class="modal-title">Upload a Letter</h2>
@@ -8,7 +8,7 @@
 
       <div class="row">
         <div class="col-md-2">
-          <span class="btn btn-info btn-file glyphicon glyphicon-picture"> Browse... <input type="file" nv-file-select="" uploader="uploader" multiple />
+          <span class="btn btn-info btn-file glyphicon glyphicon-picture"> Browse... <input type="file" nv-file-select="" uploader="mainUploader" multiple />
           </span>
         </div>
 
@@ -18,8 +18,7 @@
 
         <div class="col-md-9">
           <div>
-            <!-- 3. nv-file-over uploader="link" over-class="className" -->
-            <div class="well file-drop-zone" nv-file-over="" uploader="uploader">
+            <div class="well file-drop-zone" nv-file-over="" uploader="mainUploader">
               <b>Drop Images Here</b>
             </div>
           </div>
@@ -38,7 +37,7 @@
             </tr>
           </thead>
           <tbody ng-sortable>
-            <tr ng-repeat="item in uploader.queue" style="cursor: move;">
+            <tr ng-repeat="item in mainUploader.queue" style="cursor: move;">
               <td>
                 <strong>{{ item.file.name }}</strong>
                 <!-- Image preview -->
@@ -81,16 +80,16 @@
           <div>
             Upload progress:
             <div class="progress" style="">
-              <div class="progress-bar" role="progressbar" ng-style="{ 'width': uploader.progress + '%' }"></div>
+              <div class="progress-bar" role="progressbar" ng-style="{ 'width': mainUploader.progress + '%' }"></div>
             </div>
           </div>
-          <button type="button" class="btn btn-success btn-s" ng-click="uploader.uploadAll()" ng-disabled="!uploader.getNotUploadedItems().length">
+          <button type="button" class="btn btn-success btn-s" ng-click="mainUploader.uploadAll()" ng-disabled="!mainUploader.getNotUploadedItems().length">
             <span class="glyphicon glyphicon-upload"></span> Upload all
           </button>
-          <button type="button" class="btn btn-warning btn-s" ng-click="uploader.cancelAll()" ng-disabled="!uploader.isUploading">
+          <button type="button" class="btn btn-warning btn-s" ng-click="mainUploader.cancelAll()" ng-disabled="!mainUploader.isUploading">
             <span class="glyphicon glyphicon-ban-circle"></span> Cancel all
           </button>
-          <button type="button" class="btn btn-danger btn-s" ng-click="uploader.clearQueue()" ng-disabled="!uploader.queue.length">
+          <button type="button" class="btn btn-danger btn-s" ng-click="mainUploader.clearQueue()" ng-disabled="!mainUploader.queue.length">
             <span class="glyphicon glyphicon-trash"></span> Remove all
           </button>
         </div>
@@ -98,7 +97,7 @@
     </div>
 
     <div class="modal-footer">
-      <button class="btn btn-primary" type="button" ng-click="submit()" ng-disabled="!uploader.queue.length || uploader.getNotUploadedItems().length"><span class="glyphicon glyphicon-ok"></span> Upload Letter</button>
+      <button class="btn btn-primary" type="button" ng-click="submit()" ng-disabled="!mainUploader.queue.length || mainUploader.getNotUploadedItems().length"><span class="glyphicon glyphicon-ok"></span> Upload Letter</button>
       <button class="btn btn-warning" type="button" ng-click="cancel()"><span class="glyphicon glyphicon-ban-circle"></span> Cancel</button>
     </div>
 

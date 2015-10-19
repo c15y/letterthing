@@ -1,19 +1,23 @@
 'use strict';
 
-angular.module('mean.system').controller('LetterController', ['$scope', '$modalInstance',  'FileUploader', 'Mailboxes', 'Letter',
-  function($scope, $modalInstance, FileUploader, Mailboxes, Letter) {
+angular.module('mean.system').controller('LetterController', ['$scope', '$modalInstance',  'FileUploader', 'Mailboxes', 'Letter', 'lodash',
+  function($scope, $modalInstance, FileUploader, Mailboxes, Letter, _) {
 
     $scope.Letter = Letter;
 
-    var uploader = $scope.uploader = new FileUploader({
+    var mainUploader = $scope.mainUploader = new FileUploader({
       url: '(URL is set dynamically in onAfterAddingFile)'
     });
 
-    Letter.allFiles = function() {
-      return $scope.uploader.queue;
-    }
+    var handlingUploader = $scope.handlingUploader = new FileUploader({
+      url: '(URL is set dynamically in onAfterAddingFile)'
+    });
 
-    uploader.filters.push({
+    var paymentsUploader = $scope.paymentsUploader = new FileUploader({
+      url: '(URL is set dynamically in onAfterAddingFile)'
+    });
+
+    mainUploader.filters.push({
       name: 'imageFilter',
       fn: function(item /*{File|FileLikeObject}*/, options) {
         var type = '|' + item.type.slice(item.type.lastIndexOf('/') + 1) + '|';
@@ -23,20 +27,36 @@ angular.module('mean.system').controller('LetterController', ['$scope', '$modalI
     });
 
     $scope.submit = function () {
-      var mailbox = $scope.mailbox;
+      var mailbox = angular.copy($scope.mailbox);
+
       var letter = $scope.Letter.newLetter(mailbox)
+      letter.main = _.map($scope.mainUploader.queue, function(fileItem) { return fileItem.page; });
+      letter.handling = _.map($scope.handlingUploader.queue, function(fileItem) { return fileItem.page; });
+      letter.payments = _.map($scope.paymentsUploader.queue, function(fileItem) { return fileItem.page; });
+
       mailbox.letters.push(letter);
-      Mailboxes.save(mailbox);
+      Mailboxes.save(mailbox, function(err, next) {
+        if (err) {
+          next(err);
+        }
+        else {
+          $scope.mailbox = mailbox;
+        }
+      });
+
       $modalInstance.close();
     };
 
     $scope.cancel = function () {
-      $scope.uploader.cancelAll();
+      $scope.mainUploader.cancelAll();
+      $scope.handlerUploader.cancelAll();
+      $scope.paymentsUploader.cancelAll();
       $modalInstance.dismiss('cancel');
     };
 
-    uploader.onAfterAddingFile = function(fileItem) {
-      fileItem.url = '/api/v1/images/' + $scope.Letter._id + '/' + ObjectId();
+    mainUploader.onAfterAddingFile = function(fileItem) {
+      fileItem.page = ObjectId();
+      fileItem.url = '/api/v1/images/' + $scope.Letter._id + '/' + fileItem.page;
     };
   }]);
 

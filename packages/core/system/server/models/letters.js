@@ -29,13 +29,10 @@ var LetterSchema = new Schema({
   },
   subject: String,
   summary: String,
-  note: { type: String, private: true },
+  note: { type: String, access: 'protected' },
   tags: [ String ],
-  passcode: { type: String, uppercase: true, match: PasscodeRegEx, private: true },
-  envelope: {
-    front: { type: Schema.Types.ObjectId, required: true },
-    back: { type: Schema.Types.ObjectId, required: true }
-  },
+  passcode: { type: String, uppercase: true, match: PasscodeRegEx, access: 'protected' },
+  main: { type: [Schema.Types.ObjectId], required: true },
   handling: {
     type: [{
       page: { type: Schema.Types.ObjectId, required: true },
@@ -47,9 +44,8 @@ var LetterSchema = new Schema({
       },
       handled: Date
     }],
-    private: true
+    access: 'protected'
   },
-  pages: { type: [Schema.Types.ObjectId], required: false },
   payments: {
     type: [{
       page: { type: Schema.Types.ObjectId, required: true },
@@ -59,7 +55,7 @@ var LetterSchema = new Schema({
       mailed: Date,
       deposited: Date
     }],
-    private: true
+    access: 'protected'
   },
   cost: Number
 }, { toObject: { virtuals: true }, toJSON: { virtuals: true } });

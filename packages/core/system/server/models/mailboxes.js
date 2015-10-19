@@ -8,8 +8,7 @@ var MailboxSchema = new Schema({
   _id: {
     type: String,
     unique: true,
-    match: ModelUtils.PhoneRegEx,
-    required: true
+    match: ModelUtils.PhoneRegEx
   },
   name: { type: String },
   letters: [ mongoose.model('Letter').schema ],
@@ -18,7 +17,7 @@ var MailboxSchema = new Schema({
       user: { type: Schema.Types.ObjectId, unique: true, required: true },
       office: { type: String, match: ModelUtils.PhoneRegEx, required: true }
     },
-    private: true,
+    access: 'private',
     sparse: true
   }
 }, { toObject: { virtuals: true }, toJSON: { virtuals: true } });
