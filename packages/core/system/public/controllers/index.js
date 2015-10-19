@@ -57,11 +57,11 @@ app.controller('IndexController', ['$scope', 'Global', '$location', '$state', '$
     $scope.code = $stateParams.code;
     focus('code');
 
-    // Modal for adding a letter to a mailbox
-    $scope.addLetter = function () {
+    // Modal for uploading a letter to a mailbox
+    $scope.uploadLetter = function () {
       $uibModal.open({
         animation: true,
-        templateUrl: 'system/views/add-letter.html',
+        templateUrl: 'system/views/upload.html',
         controller: 'LetterController',
         scope: $scope
       });
