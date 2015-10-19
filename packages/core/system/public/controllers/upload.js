@@ -34,7 +34,8 @@ angular.module('mean.system').controller('UploadController', ['$scope', '$modalI
 
       var mailbox = angular.copy($scope.mailbox);
       mailbox.letters.push(letter);
-      Mailboxes.save(mailbox, function(err, next) {
+      var upsert = mailbox._id ? Mailboxes.update : Mailboxes.save;
+      upsert(mailbox, function(err, next) {
         if (err) {
           next(err);
         }

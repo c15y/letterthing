@@ -43,7 +43,7 @@ app.controller('IndexController', ['$scope', 'Global', '$location', '$state', '$
           $scope.mailbox = undefined;
         }
         else if (!$scope.mailbox) {
-          Mailboxes.get({"mailbox": phone}, function(data) {
+          Mailboxes.get({"phone": phone}, function(data) {
             $scope.mailbox = data;
           }, function() {
             $scope.mailbox = { phone: phone, letters: [] }
