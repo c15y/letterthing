@@ -7,15 +7,15 @@ app.controller('IndexController', ['$scope', 'Global', '$location', '$state', '$
     $scope.global = Global;
     $scope.user = User;
 
-    // Logic for selecting a mailbox by code
-    $scope.$watch('code', function(newValue, oldValue) {
+    // Logic for selecting a mailbox by phone
+    $scope.$watch('phone', function(newValue, oldValue) {
       if (oldValue && oldValue.length > 10 && newValue && newValue.length <= 10) {
         return;
       }
 
-      function allowValidCode() {
-        var valid = function(code) {
-          if (code != undefined && code != "" && !code.match(/^[2-9][0-9]{0,9}$/g)) {
+      function allowValidPhone() {
+        var valid = function(phone) {
+          if (phone != undefined && phone != "" && !phone.match(/^[2-9][0-9]{0,9}$/g)) {
             return false;
           }
           return true;
@@ -32,21 +32,21 @@ app.controller('IndexController', ['$scope', 'Global', '$location', '$state', '$
         }
       }
 
-      var code = $scope.code = allowValidCode();
+      var phone = $scope.phone = allowValidPhone();
 
-      if (code && code.length == 10 && code != oldValue &&
-        !$state.is('mailbox', { "code": code })) {
-        $state.go('mailbox', { "code": code });
+      if (phone && phone.length == 10 && phone != oldValue &&
+        !$state.is('mailbox', { "phone": phone })) {
+        $state.go('mailbox', { "phone": phone });
       }
       else {
-        if (!code || code.length != 10) {
+        if (!phone || phone.length != 10) {
           $scope.mailbox = undefined;
         }
         else if (!$scope.mailbox) {
-          Mailboxes.get({"code": code}, function(data) {
+          Mailboxes.get({"code": phone}, function(data) {
             $scope.mailbox = data;
           }, function() {
-            $scope.mailbox = { _id: code, letters: [] }
+            $scope.mailbox = { phone: phone, letters: [] }
           });
         }
       }
@@ -54,8 +54,8 @@ app.controller('IndexController', ['$scope', 'Global', '$location', '$state', '$
       $scope.letter = {}
     });
 
-    $scope.code = $stateParams.code;
-    focus('code');
+    $scope.phone = $stateParams.phone;
+    focus('phone');
 
     // Modal for uploading a letter to a mailbox
     $scope.uploadLetter = function () {
@@ -69,26 +69,26 @@ app.controller('IndexController', ['$scope', 'Global', '$location', '$state', '$
 
     // Event handlers
     $scope.onKeyDown = function ($event) {
-      if ($event.keyCode == 18) { // Alt
+      if ($event.keyPhone == 18) { // Alt
         Shifted.setShifted(true);
       }
     };
 
     $scope.onKeyUp = function ($event) {
-      if ($event.keyCode == 18) { // Alt
+      if ($event.keyPhone == 18) { // Alt
         Shifted.setShifted(false);
       }
     };
   }
 ]);
 
-// Filter for translating a mailbox code to a phone number
-app.filter('phone', function() {
-    return function(code) {
-      if (!code) { return ''; }
+// Filter for translating a mailbox phone to a phone number
+app.filter('phoneFormat', function() {
+    return function(phone) {
+      if (!phone) { return ''; }
 
-      var area = code.toString().slice(0, 3);
-      var number = code.toString().slice(3);
+      var area = phone.toString().slice(0, 3);
+      var number = phone.toString().slice(3);
 
       if (area.length == 3) {
         area = "(" + area + ") ";

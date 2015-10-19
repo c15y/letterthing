@@ -5,10 +5,12 @@ var mongoose  = require('mongoose'),
    ModelUtils = require('./model-utils');
 
 var MailboxSchema = new Schema({
-  _id: {
+  phone: {
     type: String,
     unique: true,
-    match: ModelUtils.PhoneRegEx
+    match: ModelUtils.PhoneRegEx,
+    required: true,
+    index: true
   },
   name: { type: String },
   letters: [ mongoose.model('Letter').schema ],
@@ -21,12 +23,5 @@ var MailboxSchema = new Schema({
     sparse: true
   }
 }, { toObject: { virtuals: true }, toJSON: { virtuals: true } });
-
-MailboxSchema.virtual('phone').get(function () {
-  var area = "(" + this._id.toString().slice(0, 3) + ") ";
-  var number = this._id.toString().slice(3);
-  number = number.slice(0, 3) + '-' + number.slice(3);
-  return area + number;
-});
 
 exports.Mailbox = mongoose.model('Mailbox', MailboxSchema);

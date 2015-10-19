@@ -27,13 +27,12 @@ angular.module('mean.system').controller('UploadController', ['$scope', '$modalI
     });
 
     $scope.submit = function () {
-      var mailbox = angular.copy($scope.mailbox);
-
-      var letter = $scope.Letter.newLetter(mailbox)
+      var letter = $scope.Letter.newLetter()
       letter.main = _.map($scope.mainUploader.queue, function(fileItem) { return fileItem.page; });
       letter.handling = _.map($scope.handlingUploader.queue, function(fileItem) { return fileItem.page; });
       letter.payments = _.map($scope.paymentsUploader.queue, function(fileItem) { return fileItem.page; });
 
+      var mailbox = angular.copy($scope.mailbox);
       mailbox.letters.push(letter);
       Mailboxes.save(mailbox, function(err, next) {
         if (err) {
