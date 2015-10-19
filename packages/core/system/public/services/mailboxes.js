@@ -2,7 +2,7 @@
 
 angular.module('mean.system').factory('Mailboxes', ['$resource',
   function($resource) {
-    return $resource('/api/v1/mailboxes/:phone', null,
+    return $resource('/api/v1/mailboxes/:phone', { phone: '@phone' },
       {
           'update': { method: 'PUT' },
           'save': { method: 'POST', url: '/api/v1/mailboxes' }
