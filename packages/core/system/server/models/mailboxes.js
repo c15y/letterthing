@@ -8,7 +8,8 @@ var MailboxSchema = new Schema({
   msc: {
     type: String,
     unique: true,
-    match: ModelUtils.PhoneRegEx
+    match: ModelUtils.PhoneRegEx,
+    required: true
   },
   name: { type: String },
   letters: [ mongoose.model('Letter').schema ],
