@@ -41,6 +41,9 @@ app.controller('IndexController', ['$scope', 'Global', '$location', '$state', '$
       else {
         if (!msc || msc.length != 10) {
           $scope.mailbox = undefined;
+          if (!msc || msc.length == 0) {
+            $state.go('home');
+          }
         }
         else if (!$scope.mailbox) {
           Mailboxes.get({"msc": msc}, function(data) {
