@@ -1,10 +1,10 @@
 <section class="container-fluid" ng-controller="IndexController">
     <div class="row">
       <div class="col-xs-5 col-sm-4">
-        Number: <em>{{ msc | phone }}</em>
         <input type="text" id="msc" name="msc" class="form-control"
-               ng-model="msc" focus-on="msc" ng-trim="false"
+               placeholder="Number" ng-model="msc" focus-on="msc" ng-trim="false"
                ng-keydown="onKeyDown($event)" ng-keyup="onKeyUp($event)"/>
+        <em>{{ msc | phone }}</em>
         <br><br>
         <ng-pluralize count="!letters ? -1 : letters.length"
                        when="{'-1': 'No mailbox selected.',
@@ -22,8 +22,10 @@
         </div>
       </div>
       <div class="col-xs-4 col-sm-4">
-        Key: <em>{{ key }}</em>
-        <input type="text" id="key" name="key" class="form-control" ng-model="key" ng-trim="false"/>
+        <div ng-show="msc && msc.length == 10">
+          <input type="text" id="key" name="key" placeholder="Key" class="form-control"
+                 ng-model="key" ng-trim="false"/>
+        </div>
       </div>
       <div class="col-xs-3 col-sm-4">
         <div class="list-group">

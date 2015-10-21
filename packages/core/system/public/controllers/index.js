@@ -39,6 +39,7 @@ app.controller('IndexController', ['$scope', 'Global', '$location', '$state', '$
         $state.go('mailbox', { 'msc': msc });
       }
       else if (!msc || msc.length != 10) {
+        $scope.key = undefined;
         $scope.letters = undefined;
         $scope.letter = {};
       }
@@ -46,6 +47,7 @@ app.controller('IndexController', ['$scope', 'Global', '$location', '$state', '$
         Letters.query({ 'query': { 'msc': msc, 'key': $scope.key }}, function(data) {
           $scope.letters = data;
         }, function(err) {
+          $scope.key = undefined;
           $scope.letters = undefined;
           $scope.letter = {};
           console.log(err);
@@ -134,7 +136,7 @@ app.filter('phone', function() {
     };
 });
 
-// A directive that should be moved to its own file...
+// Focus directive
 app.directive('focusOn', function() {
    return function(scope, elem, attr) {
       scope.$on('focusOn', function(e, name) {
@@ -152,7 +154,4 @@ app.factory('focus', function ($rootScope, $timeout) {
     });
   }
 });
-
-
-
 
