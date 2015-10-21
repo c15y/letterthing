@@ -1,7 +1,7 @@
 <section class="container-fluid" ng-controller="IndexController">
     <div class="row">
-      <div class="col-xs-7 col-sm-4">
-        Phone Number: <em>{{ msc | phone }}</em>
+      <div class="col-xs-5 col-sm-4">
+        Number: <em>{{ msc | phone }}</em>
         <input type="text" id="msc" name="msc" class="form-control"
                ng-model="msc" focus-on="msc" ng-trim="false"
                ng-keydown="onKeyDown($event)" ng-keyup="onKeyUp($event)"/>
@@ -21,11 +21,11 @@
           </ui-select>
         </div>
       </div>
-      <div class="col-xs-1 col-sm-5">
+      <div class="col-xs-4 col-sm-4">
         Key: <em>{{ key }}</em>
         <input type="text" id="key" name="key" class="form-control" ng-model="key" ng-trim="false"/>
       </div>
-      <div class="col-xs-4 col-sm-3">
+      <div class="col-xs-3 col-sm-4">
         <div class="list-group">
           <div ng-show="letters">
             <a class="list-group-item">Compose a Letter</a>
