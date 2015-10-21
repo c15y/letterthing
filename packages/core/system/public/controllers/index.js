@@ -43,7 +43,7 @@ app.controller('IndexController', ['$scope', 'Global', '$location', '$state', '$
         $scope.letter = {};
       }
       else if (!$scope.letters) {
-        Letters.get({ 'query': { 'msc': msc, 'key': $scope.key }}, function(data) {
+        Letters.query({ 'query': { 'msc': msc, 'key': $scope.key }}, function(data) {
           $scope.letters = data;
         }, function(err) {
           $scope.letters = undefined;

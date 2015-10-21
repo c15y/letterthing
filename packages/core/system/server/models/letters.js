@@ -4,17 +4,17 @@ var mongoose  = require('mongoose'),
      Schema   = mongoose.Schema,
           _   = require('lodash');
 
-var PhoneRegEx = /^[2-9][0-9]{0,9}$/,
-    StateRegEx = /^((A[LKZR])|(C[AOT])|(D[EC])|(FL)|(GA)|(HI)|(I[DLNA])|(K[SY])|(LA)|(M[EDAINSOT])|(N[EVHJMYCD])|(O[HKR])|(PA)|(RI)|(S[CD])|(T[NX])|(UT)|(V[TA])|(W[AVIY]))$/,
-      ZipRegEx = /^[0-9]{5}(?:-[0-9]{4})?$/,
-      KeyRegEx = /^[A-z0-9]+$/;
+var MscRegEx = /^[2-9][0-9]{0,9}$/,
+  StateRegEx = /^((A[LKZR])|(C[AOT])|(D[EC])|(FL)|(GA)|(HI)|(I[DLNA])|(K[SY])|(LA)|(M[EDAINSOT])|(N[EVHJMYCD])|(O[HKR])|(PA)|(RI)|(S[CD])|(T[NX])|(UT)|(V[TA])|(W[AVIY]))$/,
+    ZipRegEx = /^[0-9]{5}(?:-[0-9]{4})?$/,
+    KeyRegEx = /^[A-z0-9]+$/;
 
 var LetterSchema = new Schema({
-  operator: { type: String, match: PhoneRegEx, required: true },
+  operator: { type: Schema.Types.ObjectId, required: true },
   direction: { type: String, enum: ['incoming', 'outgoing'], required: true },
   created: { type: Date, default: Date.now, required: true },
   rendered: { type: Date, default: Date.now, required: true },
-  msc: { type: String, match: PhoneRegEx },
+  msc: { type: String, match: MscRegEx },
   key: { type: String, match: KeyRegEx, access: 'protected' },
   alarm: Date,
   mailed: Date,

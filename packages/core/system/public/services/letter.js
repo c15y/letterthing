@@ -16,7 +16,7 @@ angular.module('mean.system').factory('Letter', ['$resource', 'MeanUser',
         _id: this._id,
         msc: this.msc,
         key: this.key,
-        operator: '5419754290', // TODO
+        operator: User.user._id,
         direction: 'incoming',
         main: this.main,
         handling: this.handling,
