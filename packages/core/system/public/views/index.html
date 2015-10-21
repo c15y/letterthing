@@ -29,8 +29,6 @@
         <div class="list-group">
           <div ng-show="letters">
             <a class="list-group-item">Compose a Letter</a>
-            <a class="list-group-item">Account Balance: <b>$1.25</b></a>
-            <a class="list-group-item">Mailbox Settings</a>
             <div ng-if="user.isOperator">
               <a class="list-group-item" ng-click="uploadLetter()">Upload a Letter</a>
             </div>
@@ -54,7 +52,8 @@
         </div>
         <div class="col-xs-3 col-sm-4">
           <ul class="list-group">
-            <li class="list-group-item">Replies (Create, Collaborate, Preview, Schedule)</li>
+            <li class="list-group-item">Reply</li>
+            <a class="list-group-item">Balance: <b>$1.25</b></a>
           </ul>
         </div>
       </div>
