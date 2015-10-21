@@ -9,6 +9,6 @@ var PageSchema = new Schema({
   caption: String,
   summary: String,
   note: { type: String, private: true }
-}, { toObject: { virtuals: true } });
+});
 
 exports.Page = mongoose.model('Page', PageSchema);

@@ -4,6 +4,8 @@ angular.module('mean.system').factory('Letter', ['$resource', 'MeanUser',
   function($resource, User) {
     function LetterKlass() {
         this._id = ObjectId();
+        this.msc = undefined;
+        this.key = undefined
         this.main = undefined;
         this.handling = undefined;
         this.payments = undefined;
@@ -12,6 +14,8 @@ angular.module('mean.system').factory('Letter', ['$resource', 'MeanUser',
     LetterKlass.prototype.newLetter = function() {
       return {
         _id: this._id,
+        msc: this.msc,
+        key: this.key,
         operator: '5419754290', // TODO
         direction: 'incoming',
         main: this.main,

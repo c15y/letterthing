@@ -2,12 +2,12 @@
 
 var app = angular.module('mean.system');
 
-app.controller('IndexController', ['$scope', 'Global', '$location', '$state', '$stateParams', 'MeanUser', 'focus', 'Mailboxes', '$uibModal', 'Shifted', '$q',
-  function($scope, Global, $location, $state, $stateParams, User, focus, Mailboxes, $uibModal, Shifted, $q) {
+app.controller('IndexController', ['$scope', 'Global', '$location', '$state', '$stateParams', 'MeanUser', 'focus', 'Letters', '$uibModal', 'Shifted', '$q',
+  function($scope, Global, $location, $state, $stateParams, User, focus, Letters, $uibModal, Shifted, $q) {
     $scope.global = Global;
     $scope.user = User;
 
-    // Logic for selecting a mailbox by msc
+    // Logic for selecting a mailbox
     $scope.$watch('msc', function(newValue, oldValue) {
       if (oldValue && oldValue.length > 10 && newValue && newValue.length <= 10) {
         return;
@@ -35,27 +35,54 @@ app.controller('IndexController', ['$scope', 'Global', '$location', '$state', '$
       var msc = $scope.msc = allowValidMsc();
 
       if (msc && msc.length == 10 && msc != oldValue &&
-        !$state.is('mailbox', { "msc": msc })) {
-        $state.go('mailbox', { "msc": msc });
+        !$state.is('mailbox', { 'msc': msc })) {
+        $state.go('mailbox', { 'msc': msc });
       }
       else if (!msc || msc.length != 10) {
-        $scope.mailbox = undefined;
+        $scope.letters = undefined;
+        $scope.letter = {};
       }
-      else if (!$scope.mailbox) {
-        Mailboxes.get({"msc": msc}, function(data) {
-          $scope.mailbox = data;
-        }, function() {
-          $scope.mailbox = { msc: msc, letters: [] }
+      else if (!$scope.letters) {
+        Letters.get({ 'query': { 'msc': msc, 'key': $scope.key }}, function(data) {
+          $scope.letters = data;
+        }, function(err) {
+          $scope.letters = undefined;
+          $scope.letter = {};
+          console.log(err);
         });
       }
+    });
 
-      $scope.letter = {}
+    // Logic for selecting a key
+    $scope.$watch('key', function(newValue, oldValue) {
+      function allowValidKey() {
+        var valid = function(key) {
+          if (key != undefined && key != "" && !key.match(/^[A-Za-z0-9]+$/g)) {
+            return false;
+          }
+          return true;
+        }
+
+        if (valid(newValue)) {
+          return newValue;
+        }
+        else if (valid(oldValue)) {
+          return oldValue;
+        }
+        else {
+          return undefined;
+        }
+      }
+
+      $scope.key = allowValidKey();
     });
 
     $scope.msc = $stateParams.msc;
+    $scope.letters = undefined;
+    $scope.letter = {};
     focus('msc');
 
-    // Modal for uploading a letter to a mailbox
+    // Modal for uploading a letter
     $scope.uploadLetter = function () {
       var modalInstance = $uibModal.open({
         animation: true,

@@ -2,19 +2,20 @@
 
 var mongoose  = require('mongoose'),
      Schema   = mongoose.Schema,
-          _   = require('lodash'),
-   ModelUtils = require('./model-utils');
+          _   = require('lodash');
 
-var StateRegEx = /^((A[LKZR])|(C[AOT])|(D[EC])|(FL)|(GA)|(HI)|(I[DLNA])|(K[SY])|(LA)|(M[EDAINSOT])|(N[EVHJMYCD])|(O[HKR])|(PA)|(RI)|(S[CD])|(T[NX])|(UT)|(V[TA])|(W[AVIY]))$/,
+var PhoneRegEx = /^[2-9][0-9]{0,9}$/,
+    StateRegEx = /^((A[LKZR])|(C[AOT])|(D[EC])|(FL)|(GA)|(HI)|(I[DLNA])|(K[SY])|(LA)|(M[EDAINSOT])|(N[EVHJMYCD])|(O[HKR])|(PA)|(RI)|(S[CD])|(T[NX])|(UT)|(V[TA])|(W[AVIY]))$/,
       ZipRegEx = /^[0-9]{5}(?:-[0-9]{4})?$/,
- PasscodeRegEx = /^[A-Z]+$/;
+      KeyRegEx = /^[A-z0-9]+$/;
 
 var LetterSchema = new Schema({
-  operator: { type: String, match: ModelUtils.PhoneRegEx, required: true },
+  operator: { type: String, match: PhoneRegEx, required: true },
   direction: { type: String, enum: ['incoming', 'outgoing'], required: true },
   created: { type: Date, default: Date.now, required: true },
   rendered: { type: Date, default: Date.now, required: true },
-  inre: Schema.Types.ObjectId,
+  msc: { type: String, match: PhoneRegEx },
+  key: { type: String, match: KeyRegEx, access: 'protected' },
   alarm: Date,
   mailed: Date,
   address: {
@@ -31,7 +32,6 @@ var LetterSchema = new Schema({
   summary: String,
   note: { type: String, access: 'protected' },
   tags: [ String ],
-  passcode: { type: String, uppercase: true, match: PasscodeRegEx, access: 'protected' },
   main: { type: [Schema.Types.ObjectId], required: true },
   handling: {
     type: [{

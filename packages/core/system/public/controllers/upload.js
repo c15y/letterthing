@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('mean.system').controller('UploadController', ['$scope', '$modalInstance',  'FileUploader', 'Mailboxes', 'Letter', 'lodash',
-  function($scope, $modalInstance, FileUploader, Mailboxes, Letter, _) {
+angular.module('mean.system').controller('UploadController', ['$scope', '$modalInstance',  'FileUploader', 'Letters', 'Letter', 'lodash',
+  function($scope, $modalInstance, FileUploader, Letters, Letter, _) {
 
     $scope.Letter = Letter;
 
@@ -28,21 +28,26 @@ angular.module('mean.system').controller('UploadController', ['$scope', '$modalI
 
     $scope.uploadLetter = function () {
       var letter = $scope.Letter.newLetter()
+      letter.msc = $scope.msc;
+      letter.key = $scope.key;
       letter.main = _.map($scope.mainUploader.queue, function(fileItem) { return fileItem.page; });
       letter.handling = _.map($scope.handlingUploader.queue, function(fileItem) { return fileItem.page; });
       letter.payments = _.map($scope.paymentsUploader.queue, function(fileItem) { return fileItem.page; });
 
-      var mailbox = angular.copy($scope.mailbox);
-      mailbox.letters.push(letter);
-      var upsert = mailbox._id ? Mailboxes.update : Mailboxes.save;
-      upsert(mailbox).$promise.then(function(mailbox) {
-        $scope.mailbox = mailbox;
+      Letters.save(letter)
+      .$promise.then(function(letter) {
+        if ($scope.letters) {
+          $scope.letters.push(letter);
+        }
+        else {
+         $scope.letters = [letter];
+        }
         $modalInstance.close();
       }, function(err) {
         $scope.error = 'Status ' + err.status + ': ' + err.statusText;
         console.log(err);  // TODO: Need an error display on the modal
       });
-    };
+    }
 
     // Need to call this outside of modal in result.then() as well
     $scope.cancelUpload = function () {

@@ -1,11 +1,9 @@
 'use strict';
 
 var mongoose = require('mongoose'),
-Mailbox = mongoose.model('Mailbox'),
+Letter = mongoose.model('Letter'),
 restify = require('express-restify-mongoose');
 
 module.exports = function(System, app, auth, database) {
-  restify.serve(app, Mailbox, {
-    idProperty: 'msc'
-  });
+  restify.serve(app, Letter);
 };
