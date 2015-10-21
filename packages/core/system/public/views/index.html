@@ -1,9 +1,9 @@
 <section class="container-fluid" ng-controller="IndexController">
     <div class="row">
       <div class="col-xs-7 col-sm-4">
-        Phone Number: <em>{{ phone | phoneFormat }}</em>
-        <input type="text" id="phone" name="phone" class="form-control"
-               ng-model="phone" ng-trim="false" focus-on="phone"
+        Phone Number: <em>{{ msc | phone }}</em>
+        <input type="text" id="msc" name="msc" class="form-control"
+               ng-model="msc" ng-trim="false" focus-on="msc"
                ng-keydown="onKeyDown($event)" ng-keyup="onKeyUp($event)"/>
         <br><br>
         <ng-pluralize count="!mailbox ? -1 : mailbox.letters.length"

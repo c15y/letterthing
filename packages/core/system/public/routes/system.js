@@ -58,7 +58,7 @@ angular.module('mean.system').config(['$meanStateProvider', '$urlRouterProvider'
 
     $meanStateProvider
       .state('mailbox', {
-        url: '/{phone:[2-9][0-9]\{0,9\}}',
+        url: '/{msc:[2-9][0-9]\{0,9\}}',
         templateUrl: 'system/views/index.html'
       });
 

@@ -5,18 +5,16 @@ var mongoose  = require('mongoose'),
    ModelUtils = require('./model-utils');
 
 var MailboxSchema = new Schema({
-  phone: {
+  msc: {
     type: String,
     unique: true,
-    match: ModelUtils.PhoneRegEx,
-    required: true,
-    index: true
+    match: ModelUtils.PhoneRegEx
   },
   name: { type: String },
   letters: [ mongoose.model('Letter').schema ],
   operator: {
     type: {
-      user: { type: Schema.Types.ObjectId, unique: true, required: true },
+      user: { type: Schema.Types.ObjectId, required: true },
       office: { type: String, match: ModelUtils.PhoneRegEx, required: true }
     },
     access: 'private',

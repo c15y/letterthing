@@ -26,7 +26,7 @@ angular.module('mean.system').controller('UploadController', ['$scope', '$modalI
       }
     });
 
-    $scope.submit = function () {
+    $scope.uploadLetter = function () {
       var letter = $scope.Letter.newLetter()
       letter.main = _.map($scope.mainUploader.queue, function(fileItem) { return fileItem.page; });
       letter.handling = _.map($scope.handlingUploader.queue, function(fileItem) { return fileItem.page; });
@@ -35,21 +35,19 @@ angular.module('mean.system').controller('UploadController', ['$scope', '$modalI
       var mailbox = angular.copy($scope.mailbox);
       mailbox.letters.push(letter);
       var upsert = mailbox._id ? Mailboxes.update : Mailboxes.save;
-      upsert(mailbox, function(err, next) {
-        if (err) {
-          next(err);
-        }
-        else {
-          $scope.mailbox = mailbox;
-        }
+      upsert(mailbox).$promise.then(function(mailbox) {
+        $scope.mailbox = mailbox;
+        $modalInstance.close();
+      }, function(err) {
+        $scope.error = 'Status ' + err.status + ': ' + err.statusText;
+        console.log(err);  // TODO: Need an error display on the modal
       });
-
-      $modalInstance.close();
     };
 
-    $scope.cancel = function () {
+    // Need to call this outside of modal in result.then() as well
+    $scope.cancelUpload = function () {
       $scope.mainUploader.cancelAll();
-      $scope.handlerUploader.cancelAll();
+      $scope.handlingUploader.cancelAll();
       $scope.paymentsUploader.cancelAll();
       $modalInstance.dismiss('cancel');
     };
