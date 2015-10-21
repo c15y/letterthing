@@ -38,17 +38,15 @@ app.controller('IndexController', ['$scope', 'Global', '$location', '$state', '$
         !$state.is('mailbox', { "msc": msc })) {
         $state.go('mailbox', { "msc": msc });
       }
-      else {
-        if (!msc || msc.length != 10) {
-          $scope.mailbox = undefined;
-        }
-        else if (!$scope.mailbox) {
-          Mailboxes.get({"msc": msc}, function(data) {
-            $scope.mailbox = data;
-          }, function() {
-            $scope.mailbox = { msc: msc, letters: [] }
-          });
-        }
+      else if (!msc || msc.length != 10) {
+        $scope.mailbox = undefined;
+      }
+      else if (!$scope.mailbox) {
+        Mailboxes.get({"msc": msc}, function(data) {
+          $scope.mailbox = data;
+        }, function() {
+          $scope.mailbox = { msc: msc, letters: [] }
+        });
       }
 
       $scope.letter = {}
