@@ -69,7 +69,7 @@ app.controller('IndexController', ['$scope', 'Global', '$location', '$state', '$
       modalInstance.result.then(function (item) {
         // Nothing?
       }, function () {
-        $log.info('Modal dismissed at: ' + new Date());
+        console.log('Modal dismissed at: ' + new Date());
         // Cleanup?
       });
     };
