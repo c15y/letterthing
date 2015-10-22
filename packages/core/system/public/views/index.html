@@ -2,7 +2,7 @@
     <div class="row">
       <div class="col-xs-6 col-sm-4">
         <input type="text" id="searchField" name="searchField" class="form-control"
-               placeholder="Search" ng-model="searchField" focus-on="searchField" ng-trim="false"
+               placeholder="Search" ng-model="searchField" focus-on="searchField"
                ng-keydown="onKeyDown($event)" ng-keyup="onKeyUp($event)"/>
         <br><br>
         <ng-pluralize count="!letters ? -1 : letters.length"
