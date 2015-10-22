@@ -9,6 +9,11 @@ angular.module('mean.system').controller('UploadController', ['$scope', '$modalI
       url: '(URL is set dynamically in onAfterAddingFile)'
     });
 
+    uploader.onAfterAddingFile = function(fileItem) {
+      fileItem.key = ObjectId();
+      fileItem.url = '/api/v1/images/' + fileItem.key;
+    };
+
     uploader.filters.push({
       name: 'imageFilter',
       fn: function(item /*{File|FileLikeObject}*/, options) {
@@ -26,25 +31,21 @@ angular.module('mean.system').controller('UploadController', ['$scope', '$modalI
         return { 'key': fileItem.key }
       });
 
-      Letters.save(letter)
-      .$promise.then(function(letter) {
-        $scope.letters = [ letter ];
-        $scope.letter = letter;
-        $modalInstance.close();
-      }, function(err) {
-        $scope.error = 'Status ' + err.status + ': ' + err.statusText;
-        console.log(err);  // TODO: Need an error display on the modal
-      });
-    }
+      Letters.save(letter).$promise.then(
+        function(letter) {
+          $modalInstance.close(letter);
+        },
+        function(err) {
+          $scope.error = 'Status ' + err.status + ': ' + err.statusText;
+          console.log(err);  // TODO: Need an error display on the modal
+        }
+      );
+    };
 
     // Need to call this outside of modal in result.then() as well
     $scope.cancelUpload = function () {
       $scope.uploader.cancelAll();
       $modalInstance.dismiss('cancel');
-    };
-
-    uploader.onAfterAddingFile = function(fileItem) {
-      fileItem.key = ObjectId();
     };
   }
 ]);

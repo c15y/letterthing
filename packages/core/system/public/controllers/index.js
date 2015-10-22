@@ -41,6 +41,8 @@ app.controller('IndexController', ['$scope', 'Global', '$location', '$state', '$
     // Letter search
     $scope.$watch('searchField', function(newValue, oldValue) {
       $scope.search = $scope.searchField;
+      $scope.keyField = undefined;
+      $scope.key = undefined;
       query();
     });
 
@@ -99,9 +101,18 @@ app.controller('IndexController', ['$scope', 'Global', '$location', '$state', '$
         scope: $scope
       });
 
-      modalInstance.result.then(null, function () {
-        console.log('Modal dismissed at: ' + new Date());
-        // TODO: Cleanup temp files
+      modalInstance.result.then(
+        function(letter) {
+          if ($scope.letters) {
+            $scope.letters.push(letter);
+          }
+          else {
+            $scope.letters = [ letter ];
+          }
+          $scope.letter = letter;
+        }, function () {
+          console.log('Modal dismissed at: ' + new Date());
+          // TODO: Cleanup temp files
       });
     };
 
