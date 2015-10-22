@@ -25,6 +25,9 @@ app.controller('IndexController', ['$scope', 'Global', '$location', '$state', '$
           if ($scope.letters.length == 1) {
             $scope.letter = $scope.letters[0];
           }
+          else {
+            $scope.letter = {};
+          }
         },
         function(err) {
           $scope.letters = undefined;
@@ -81,6 +84,16 @@ app.controller('IndexController', ['$scope', 'Global', '$location', '$state', '$
     $scope.letter = {};
     focus('searchField');
 
+    // Clear the selected letter
+    $scope.clearLetter = function() {
+      return $scope.letter = {};
+    }
+
+    // Return image data by key
+    $scope.image = function(key) {
+      return key;
+    }
+
     // Modal for uploading a letter
     $scope.uploadLetter = function () {
       var modalInstance = $uibModal.open({
@@ -90,11 +103,9 @@ app.controller('IndexController', ['$scope', 'Global', '$location', '$state', '$
         scope: $scope
       });
 
-      modalInstance.result.then(function (item) {
-        // Nothing?
-      }, function () {
+      modalInstance.result.then(null, function () {
         console.log('Modal dismissed at: ' + new Date());
-        // Cleanup?
+        // TODO: Cleanup temp files
       });
     };
 

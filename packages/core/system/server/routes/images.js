@@ -21,8 +21,7 @@ var s3Client = s3.createClient({
 });
 
 module.exports = function(System, app, auth, database) {
-  app.post('/api/v1/images/:letter/:key', multipartMiddleware, function(req, res, next) {
-    var letter = req.params.letter;
+  app.post('/api/v1/images/:key', multipartMiddleware, function(req, res, next) {
     var key = req.params.key;
     var file = req.files.file.path;
 

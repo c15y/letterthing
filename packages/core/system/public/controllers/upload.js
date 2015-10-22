@@ -28,7 +28,7 @@ angular.module('mean.system').controller('UploadController', ['$scope', '$modalI
 
       Letters.save(letter)
       .$promise.then(function(letter) {
-        $scope.letters = [letter];
+        $scope.letters = [ letter ];
         $scope.letter = letter;
         $modalInstance.close();
       }, function(err) {
@@ -45,7 +45,7 @@ angular.module('mean.system').controller('UploadController', ['$scope', '$modalI
 
     uploader.onAfterAddingFile = function(fileItem) {
       fileItem.key = ObjectId();
-      fileItem.url = '/api/v1/images/' + $scope.Letter._id + '/' + fileItem.key;
+      fileItem.url = '/api/v1/images/' + fileItem.key;
     };
   }]);
 
