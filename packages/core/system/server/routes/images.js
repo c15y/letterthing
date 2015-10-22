@@ -43,6 +43,7 @@ module.exports = function(System, app, auth, database) {
 
     uploader.on('end', function(data) {
       fs.unlink(file);
+      res.status(200).send();
     });
   })
 };
