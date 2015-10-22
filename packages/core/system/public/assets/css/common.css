@@ -70,38 +70,34 @@ footer p {
 .featuredpic img{
   width:510px;
 }
-/*.ng-invalid.ng-dirty{*/
-  /*border-color:#FA787E;*/
-  /*}*/
-  /*.ng-valid.ng-dirty{*/
-    /*border-color:#78FA89;*/
-    /*}*/
 
-    a.list-group-item {
-      cursor: pointer;
-    }
+a.list-group-item {
+  cursor: pointer;
+}
 
-    .file-drop-zone { border: dotted 3px lightgray; }
-    .nv-file-over { border: dotted 3px red; }
+.file-drop-zone { border: dotted 3px lightgray; }
+.nv-file-over { border: dotted 3px red; }
 
-    .btn-file {
-      position: relative;
-      overflow: hidden;
-    }
-    .btn-file input[type=file] {
-      position: absolute;
-      top: 0;
-      right: 0;
-      min-width: 100%;
-      min-height: 100%;
-      font-size: 100px;
-      text-align: right;
-      filter: alpha(opacity=0);
-      opacity: 0;
-      outline: none;
-      background: white;
-      cursor: inherit;
-      display: block;
-    }
+.btn-file {
+  position: relative;
+  overflow: hidden;
+}
+.btn-file input[type=file] {
+  position: absolute;
+  top: 0;
+  right: 0;
+  min-width: 100%;
+  min-height: 100%;
+  font-size: 100px;
+  text-align: right;
+  filter: alpha(opacity=0);
+  opacity: 0;
+  outline: none;
+  background: white;
+  cursor: inherit;
+  display: block;
+}
 
-
+.highlight {
+  font-weight: bold
+}
