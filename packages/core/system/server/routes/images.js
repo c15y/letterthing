@@ -44,19 +44,24 @@ module.exports = function(System, app, auth, database) {
       fs.unlink(file);
       res.status(200).send();
     });
-  })
-};
-
-/*
-  var params = {
-    s3Params: {
-      Bucket: config.s3Bucket,
-      Key: req.params.key
-    }
-  };
-
-  var downloader = client.downloadStream(params);
-  downloader.on('end', function(stream) {
-    // ...
   });
-*/
+
+  app.get('/images/:key', function(req, res, next) {
+    var key = req.params.key;
+
+    var params = {
+      Bucket: config.s3Bucket,
+      Key: key
+    };
+
+    var downloader = s3Client.downloadBuffer(params);
+
+    downloader.on('error', function(err) {
+      next(err);
+    });
+
+    downloader.on('end', function(buffer) {
+      res.status(200).send(buffer);
+    });
+  });
+};

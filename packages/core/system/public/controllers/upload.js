@@ -45,12 +45,13 @@ angular.module('mean.system').controller('UploadController', ['$scope', '$modalI
 
     uploader.onAfterAddingFile = function(fileItem) {
       fileItem.key = ObjectId();
-      fileItem.url = '/api/v1/images/' + fileItem.key;
     };
-  }]);
+  }
+]);
 
-  // Thumbnail directive
-  angular.module('mean.system').directive('ngThumb', ['$window', function($window) {
+// Thumbnail directive
+angular.module('mean.system').directive('ngThumb', ['$window',
+  function($window) {
     var helper = {
       support: !!($window.FileReader && $window.CanvasRenderingContext2D),
       isFile: function(item) {

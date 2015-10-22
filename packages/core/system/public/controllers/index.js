@@ -2,8 +2,8 @@
 
 var app = angular.module('mean.system');
 
-app.controller('IndexController', ['$scope', 'Global', '$location', '$state', '$stateParams', 'MeanUser', 'focus', 'Letters', '$uibModal', 'Shifted', '$q',
-  function($scope, Global, $location, $state, $stateParams, User, focus, Letters, $uibModal, Shifted, $q) {
+app.controller('IndexController', ['$scope', 'Global', '$location', '$state', '$stateParams', 'MeanUser', 'focus', 'Letters', 'Images', '$uibModal', 'Shifted', '$q',
+  function($scope, Global, $location, $state, $stateParams, User, focus, Letters, Images, $uibModal, Shifted, $q) {
     $scope.global = Global;
     $scope.user = User;
 
@@ -21,9 +21,10 @@ app.controller('IndexController', ['$scope', 'Global', '$location', '$state', '$
 
       Letters.query({ 'query': query },
         function(data) {
-          $scope.letters = data;
-          if ($scope.letters.length == 1) {
-            $scope.letter = $scope.letters[0];
+          var letters = $scope.letters = data;
+
+          if (letters.length == 1) {
+            $scope.letter = letters[0];
           }
           else {
             $scope.letter = {};
@@ -87,11 +88,6 @@ app.controller('IndexController', ['$scope', 'Global', '$location', '$state', '$
     // Clear the selected letter
     $scope.clearLetter = function() {
       return $scope.letter = {};
-    }
-
-    // Return image data by key
-    $scope.image = function(key) {
-      return key;
     }
 
     // Modal for uploading a letter
