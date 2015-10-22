@@ -3,8 +3,6 @@
  var mean = require('meanio'),
 multipart = require('connect-multiparty'),
        fs = require('fs'),
- mongoose = require('mongoose'),
-     Page = mongoose.model('Page'),
        s3 = require('s3'),
    config = mean.loadConfig();
 
@@ -23,16 +21,16 @@ var s3Client = s3.createClient({
 });
 
 module.exports = function(System, app, auth, database) {
-  app.post('/api/v1/images/:letter/:page', multipartMiddleware, function(req, res, next) {
+  app.post('/api/v1/images/:letter/:key', multipartMiddleware, function(req, res, next) {
     var letter = req.params.letter;
-    var page = req.params.page;
+    var key = req.params.key;
     var file = req.files.file.path;
 
     var params = {
       localFile: file,
       s3Params: {
         Bucket: config.s3Bucket,
-        Key: page
+        Key: key
       }
     };
 
@@ -45,15 +43,6 @@ module.exports = function(System, app, auth, database) {
 
     uploader.on('end', function(data) {
       fs.unlink(file);
-      var newPage = new Page({ _id: page, letter: letter });
-      newPage.save(function(err) {
-        if (err) {
-          next(err);
-        }
-        else {
-          res.status(200).send();
-        }
-      });
     });
   })
 };
@@ -62,7 +51,7 @@ module.exports = function(System, app, auth, database) {
   var params = {
     s3Params: {
       Bucket: config.s3Bucket,
-      Key: this._id.toString()
+      Key: req.params.key
     }
   };
 
@@ -70,5 +59,4 @@ module.exports = function(System, app, auth, database) {
   downloader.on('end', function(buffer) {
     // ...
   });
-
 */

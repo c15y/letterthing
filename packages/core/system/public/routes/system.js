@@ -57,12 +57,6 @@ angular.module('mean.system').config(['$meanStateProvider', '$urlRouterProvider'
       });
 
     $meanStateProvider
-      .state('mailbox', {
-        url: '/{msc:[2-9][0-9]\{9\}}',
-        templateUrl: 'system/views/index.html'
-      });
-
-    $meanStateProvider
       .state('Log Out', {
         controller: function () {
           window.location = '/logout';

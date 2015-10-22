@@ -7,59 +7,48 @@ app.controller('IndexController', ['$scope', 'Global', '$location', '$state', '$
     $scope.global = Global;
     $scope.user = User;
 
-    // Logic for selecting a mailbox
-    $scope.$watch('msc', function(newValue, oldValue) {
-      if (oldValue && oldValue.length > 10 && newValue && newValue.length <= 10) {
-        return;
-      }
+    function query() {
+      var searchExpr = $scope.search ? { $regex: '\\b' + $scope.search + '\\b'} : undefined;
+      var query = {
+        $or: [{
+          'name': searchExpr
+        },
+        {
+          'subject': searchExpr
+        }],
+        'key': $scope.key
+      };
 
-      function allowValidMsc() {
-        var valid = function(msc) {
-          if (msc != undefined && msc != "" && !msc.match(/^[2-9][0-9]{0,9}$/g)) {
-            return false;
-          }
-          return true;
-        }
-
-        if (valid(newValue)) {
-          return newValue;
-        }
-        else if (valid(oldValue)) {
-          return oldValue;
-        }
-        else {
-          return undefined;
-        }
-      }
-
-      var msc = $scope.msc = allowValidMsc();
-
-      if (msc && msc.length == 10 && msc != oldValue &&
-        !$state.is('mailbox', { 'msc': msc })) {
-        $state.go('mailbox', { 'msc': msc });
-      }
-      else if (!msc || msc.length != 10) {
-        $scope.key = undefined;
-        $scope.letters = undefined;
-        $scope.letter = {};
-      }
-      else if (!$scope.letters) {
-        Letters.query({ 'query': { 'msc': msc, 'key': $scope.key }}, function(data) {
+      Letters.query({ 'query': query },
+        function(data) {
           $scope.letters = data;
-        }, function(err) {
-          $scope.key = undefined;
+          if ($scope.letters.length == 1) {
+            $scope.letter = $scope.letters[0];
+          }
+        },
+        function(err) {
           $scope.letters = undefined;
           $scope.letter = {};
           console.log(err);
-        });
-      }
+        }
+      );
+    }
+
+    // Letter search
+    $scope.$watch('searchField', function(newValue, oldValue) {
+      $scope.search = $scope.searchField;
+      query();
     });
 
     // Logic for selecting a key
-    $scope.$watch('key', function(newValue, oldValue) {
+    $scope.$watch('keyField', function(newValue, oldValue) {
+      if (oldValue && oldValue.length > 4 && newValue && newValue.length <= 4) {
+        return;
+      }
+
       function allowValidKey() {
         var valid = function(key) {
-          if (key != undefined && key != "" && !key.match(/^[A-Za-z0-9]+$/g)) {
+          if (key && !key.match(/^[0-9]{0,4}$/g) && !key.match(/^[A-Za-z]{0,4}$/g)) {
             return false;
           }
           return true;
@@ -76,13 +65,21 @@ app.controller('IndexController', ['$scope', 'Global', '$location', '$state', '$
         }
       }
 
-      $scope.key = allowValidKey();
+      var key = allowValidKey();
+      key = key ? key.toUpperCase() : undefined;
+      $scope.keyField = key;
+
+      var newKey = key && key.length == 4 ? key : undefined;
+
+      if (newKey != $scope.key) {
+        $scope.key = newKey;
+        query();
+      }
     });
 
-    $scope.msc = $stateParams.msc;
     $scope.letters = undefined;
     $scope.letter = {};
-    focus('msc');
+    focus('searchField');
 
     // Modal for uploading a letter
     $scope.uploadLetter = function () {
@@ -115,26 +112,6 @@ app.controller('IndexController', ['$scope', 'Global', '$location', '$state', '$
     };
   }
 ]);
-
-// Filter for translating an msc to a phone number
-app.filter('phone', function() {
-    return function(msc) {
-      if (!msc) { return ''; }
-
-      var area = msc.toString().slice(0, 3);
-      var number = msc.toString().slice(3);
-
-      if (area.length == 3) {
-        area = "(" + area + ") ";
-      }
-
-      if (number.length >= 3) {
-        number = number.slice(0, 3) + '-' + number.slice(3);
-      }
-
-      return area + number;
-    };
-});
 
 // Focus directive
 app.directive('focusOn', function() {

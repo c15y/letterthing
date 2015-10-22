@@ -5,43 +5,31 @@ angular.module('mean.system').controller('UploadController', ['$scope', '$modalI
 
     $scope.Letter = Letter;
 
-    var mainUploader = $scope.mainUploader = new FileUploader({
+    var uploader = $scope.uploader = new FileUploader({
       url: '(URL is set dynamically in onAfterAddingFile)'
     });
 
-    var handlingUploader = $scope.handlingUploader = new FileUploader({
-      url: '(URL is set dynamically in onAfterAddingFile)'
-    });
-
-    var paymentsUploader = $scope.paymentsUploader = new FileUploader({
-      url: '(URL is set dynamically in onAfterAddingFile)'
-    });
-
-    mainUploader.filters.push({
+    uploader.filters.push({
       name: 'imageFilter',
       fn: function(item /*{File|FileLikeObject}*/, options) {
         var type = '|' + item.type.slice(item.type.lastIndexOf('/') + 1) + '|';
         return '|jpg|jpeg|'.indexOf(type) !== -1;
-        // |jpg|png|jpeg|bmp|gif|
       }
     });
 
     $scope.uploadLetter = function () {
       var letter = $scope.Letter.newLetter()
-      letter.msc = $scope.msc;
+      letter.name = $scope.name;
       letter.key = $scope.key;
-      letter.main = _.map($scope.mainUploader.queue, function(fileItem) { return fileItem.page; });
-      letter.handling = _.map($scope.handlingUploader.queue, function(fileItem) { return fileItem.page; });
-      letter.payments = _.map($scope.paymentsUploader.queue, function(fileItem) { return fileItem.page; });
+
+      letter.pages = _.map($scope.uploader.queue, function(fileItem) {
+        return { 'key': fileItem.key }
+      });
 
       Letters.save(letter)
       .$promise.then(function(letter) {
-        if ($scope.letters) {
-          $scope.letters.push(letter);
-        }
-        else {
-         $scope.letters = [letter];
-        }
+        $scope.letters = [letter];
+        $scope.letter = letter;
         $modalInstance.close();
       }, function(err) {
         $scope.error = 'Status ' + err.status + ': ' + err.statusText;
@@ -51,15 +39,13 @@ angular.module('mean.system').controller('UploadController', ['$scope', '$modalI
 
     // Need to call this outside of modal in result.then() as well
     $scope.cancelUpload = function () {
-      $scope.mainUploader.cancelAll();
-      $scope.handlingUploader.cancelAll();
-      $scope.paymentsUploader.cancelAll();
+      $scope.uploader.cancelAll();
       $modalInstance.dismiss('cancel');
     };
 
-    mainUploader.onAfterAddingFile = function(fileItem) {
-      fileItem.page = ObjectId();
-      fileItem.url = '/api/v1/images/' + $scope.Letter._id + '/' + fileItem.page;
+    uploader.onAfterAddingFile = function(fileItem) {
+      fileItem.key = ObjectId();
+      fileItem.url = '/api/v1/images/' + $scope.Letter._id + '/' + fileItem.key;
     };
   }]);
 
