@@ -56,8 +56,8 @@ module.exports = function(System, app, auth, database) {
     }
   };
 
-  var downloader = client.downloadBuffer(params);
-  downloader.on('end', function(buffer) {
+  var downloader = client.downloadStream(params);
+  downloader.on('end', function(stream) {
     // ...
   });
 */
