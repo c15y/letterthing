@@ -78,6 +78,5 @@ module.exports = {
       pass: 'PASSWORD'
     }
   },
-  secret: 'SOME_TOKEN_SECRET',
-  s3Bucket: 'letterthing'
+  secret: 'SOME_TOKEN_SECRET'
 };
