@@ -1,65 +1,69 @@
 /* http://meyerweb.com/eric/tools/css/reset/
    v2.0 | 20110126
    License: none (public domain)
-*/
+   */
+   html, body, div, span, applet, object, iframe,
+   h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+   a, abbr, acronym, address, big, cite, code,
+   del, dfn, em, img, ins, kbd, q, s, samp,
+   small, strike, strong, tt, var,
+   b, u, i, center,
+   dl, dt, dd, ol, ul, li,
+   fieldset, form, label, legend,
+   table, caption, tbody, tfoot, thead, tr, th, td,
+   article, aside, canvas, details, embed,
+   figure, figcaption, footer, header, hgroup,
+   menu, nav, output, ruby, section, summary,
+   time, mark, audio, video {
+    padding: 0;
+    margin: 0;
+//    font: inherit;
+    font-size: 105%;
+    vertical-align: baseline;
+    border: 0;
+  }
+  /* HTML5 display-role reset for older browsers */
+  article, aside, details, figcaption, figure,
+  footer, header, hgroup, menu, nav, section {
+    display: block;
+  }
+  body {
+    line-height: 1;
+  }
+  ol, ul {
+    list-style: none;
+  }
+  blockquote, q {
+    quotes: none;
+  }
+  blockquote:before, blockquote:after,
+  q:before, q:after {
+    content: '';
+    content: none;
+  }
+  table {
+    border-spacing: 0;
+    border-collapse: collapse;
+  }
 
-@font-face {
-  font-family: 'Lakesight';
-  src: url('../fonts/Lakesight.ttf') format('truetype')
-}
+  .main{
+   height:320px;
+   width:320px;
+   margin:auto;
+   background-color:green;
+   z-index:-1;
+   opacity: 1;
+   filter:alpha(opacity=100);
+ }
 
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed,
-figure, figcaption, footer, header, hgroup,
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-	padding: 0;
-	margin: 0;
-	font: inherit;
-	font-size: 105%;
-	vertical-align: baseline;
-	border: 0;
-}
-/* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure,
-footer, header, hgroup, menu, nav, section {
-	display: block;
-}
-body {
-	line-height: 1;
-}
-ol, ul {
-	list-style: none;
-}
-blockquote, q {
-	quotes: none;
-}
-blockquote:before, blockquote:after,
-q:before, q:after {
-	content: '';
-	content: none;
-}
-table {
-	border-spacing: 0;
-	border-collapse: collapse;
-}
-
-/* LAYOUT STYLES */
-body {
+ /* LAYOUT STYLES */
+ body {
   font-family: 'Helvetica Neue', Helvetica, Arial, serif;
   font-size: 1em;
   line-height: 1.5;
   color: #1D1D1D;
-  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
-  background: #e7e7e7 url(../images/body-bg.png) 0 0 repeat;
+//  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
+  background: #e7e7e7;
 }
 
 a {
@@ -75,7 +79,7 @@ header {
 }
 
 header h1 {
-  font-family: 'Lakesight', serif;
+  font-family: 'Chivo', 'Helvetica Neue', Helvetica, Arial, serif;
   font-size: 48px; font-weight: 900;
   line-height: 1.2;
   color: #1D1D1D;
@@ -90,9 +94,27 @@ header h2 {
   letter-spacing: -1px;
 }
 
-#container {
+#container{
   min-height: 595px;
-  background: transparent url(../images/highlight-bg.jpg) 50% 0 no-repeat;
+  z-index: 1;
+}
+
+#container:before {
+ content: "";
+ position: absolute;
+ z-index: -1;
+ top: 0;
+ bottom: 0;
+ left: 0;
+ right: 0;
+ background-image: url(../images/great-auk-egg.png);
+ background-repeat: no-repeat;
+ background-size: 100%;
+ opacity: 0.2;
+ filter:alpha(opacity=40);
+ height:100%;
+ width:100%;
+ min-height: 950px;
 }
 
 .inner {
