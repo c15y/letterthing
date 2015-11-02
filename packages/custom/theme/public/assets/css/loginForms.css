@@ -50,17 +50,18 @@ background: url("/theme/assets/img/bg.png");
     background: #ffffff;
     box-shadow: 0 1px 3px 1px #003644;
     margin-top: 35px;
-    left: 10%;
+    left: 50%;
     position: relative;
 }
 
 .main-form {
-    width: 440px;
-    height: 340px;
+    width: 748px;
+    height: 435px;
+    margin-left: -374px;
 }
 
 .main-form.register-form {
-    height: 515px;
+    height: 622px;
 }
 
 .login-form__left {
@@ -246,7 +247,7 @@ background: url("/theme/assets/img/bg.png");
 }
 
 .button_send p {
-//    margin-left: 65px;
+    margin-left: 65px;
 }
 
 .button_register {
@@ -443,5 +444,6 @@ background: url("/theme/assets/img/bg.png");
     padding: 34px 27px;
     min-height: 280px;
     height: auto;
-    width: 440px;
+    width: 465px;
+    margin-left: -232px;
 }
