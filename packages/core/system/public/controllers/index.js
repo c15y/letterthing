@@ -98,6 +98,8 @@ app.controller('IndexController', ['$scope', 'Global', '$location', '$state', '$
         animation: true,
         templateUrl: 'system/views/upload.html',
         controller: 'UploadController',
+        backdrop : 'static',
+        keyboard: false,
         scope: $scope
       });
 
@@ -110,10 +112,7 @@ app.controller('IndexController', ['$scope', 'Global', '$location', '$state', '$
             $scope.letters = [ letter ];
           }
           $scope.letter = letter;
-        }, function () {
-          console.log('Modal dismissed at: ' + new Date());
-          // TODO: Cleanup temp files
-      });
+        });
     };
   }
 ]);
