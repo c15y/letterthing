@@ -1,8 +1,8 @@
 <section class="container-fluid" ng-controller="IndexController">
     <div class="row">
-      <div class="col-xs-6 col-sm-4">
-        <input type="text" id="searchField" name="searchField" class="form-control"
-               placeholder="Search" ng-model="searchField" focus-on="searchField"/>
+      <div class="col-xs-5 col-sm-4">
+        <input type="text" id="personField" name="personField" class="form-control"
+               placeholder="Person" ng-model="personField" focus-on="personField"/>
         <br>
         <ng-pluralize count="!letters ? -1 : letters.length"
                        when="{'-1': 'No mailbox selected.',
@@ -22,13 +22,11 @@
           </ui-select>
         </div>
       </div>
-      <div class="col-xs-3 col-sm-2">
-        <input type="text" id="keyField" name="keyField" placeholder="Key" class="form-control"
-               ng-model="keyField" ng-trim="false" ng-class="{highlight: key}"/>
+      <div class="col-xs-5 col-sm-4">
+        <input type="text" id="screenField" name="screenField" placeholder="Screen" class="form-control"
+               ng-model="screenField" ng-class="{highlight: screen}"/>
       </div>
-      <div class="col-xs-0 col-sm-2">
-      </div>
-      <div class="col-xs-3 col-sm-4">
+      <div class="col-xs-2 col-sm-4">
         <div class="list-group">
           <div ng-show="letters">
             <a class="list-group-item">Mail a Letter</a>
