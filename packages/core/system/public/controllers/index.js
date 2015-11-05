@@ -2,8 +2,8 @@
 
 var app = angular.module('mean.system');
 
-app.controller('IndexController', ['$scope', 'Global', '$location', '$state', '$stateParams', 'MeanUser', 'focus', 'Letters', 'Images', '$uibModal', 'Shifted', '$q',
-  function($scope, Global, $location, $state, $stateParams, User, focus, Letters, Images, $uibModal, Shifted, $q) {
+app.controller('IndexController', ['$scope', 'Global', '$location', '$state', '$stateParams', 'MeanUser', 'focus', 'Letters', 'Images', '$uibModal', '$q',
+  function($scope, Global, $location, $state, $stateParams, User, focus, Letters, Images, $uibModal, $q) {
     $scope.global = Global;
     $scope.user = User;
 
@@ -114,19 +114,6 @@ app.controller('IndexController', ['$scope', 'Global', '$location', '$state', '$
           console.log('Modal dismissed at: ' + new Date());
           // TODO: Cleanup temp files
       });
-    };
-
-    // Event handlers
-    $scope.onKeyDown = function ($event) {
-      if ($event.keyCode == 18) { // Alt
-        Shifted.setShifted(true);
-      }
-    };
-
-    $scope.onKeyUp = function ($event) {
-      if ($event.keyCode == 18) { // Alt
-        Shifted.setShifted(false);
-      }
     };
   }
 ]);

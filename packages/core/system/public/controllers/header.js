@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('mean.system').controller('HeaderController', ['$scope', '$rootScope', 'Menus', 'MeanUser', '$state', 'Shifted',
-  function($scope, $rootScope, Menus, MeanUser, $state, Shifted) {
+angular.module('mean.system').controller('HeaderController', ['$scope', '$rootScope', 'Menus', 'MeanUser', '$state',
+  function($scope, $rootScope, Menus, MeanUser, $state) {
 
     var vm = this;
 
@@ -56,7 +56,5 @@ angular.module('mean.system').controller('HeaderController', ['$scope', '$rootSc
       queryMenu('main', defaultMainMenu);
       $state.go('home');
     });
-
-    $scope.shifted = Shifted;
   }
 ]);

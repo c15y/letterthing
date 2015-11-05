@@ -13,7 +13,7 @@
             </div>
         </div>
 
-        <div class="collapse navbar-collapse" ng-class="!isCollapsed && 'in'" ng-if="hdrctr.hdrvars.authenticated || shifted.isShifted()">
+        <div class="collapse navbar-collapse" ng-class="!isCollapsed && 'in'">
             <div class="left pull-left">
                 <ul class="navbar-nav nav">
                     <li ui-route="/{{item.link}}" ng-class="{active: $uiRoute}" ng-repeat="item in hdrctr.menus.main">
@@ -21,25 +21,24 @@
                     </li>
                 </ul>
             </div>
-
             <div class="right pull-right">
-                <div class="text-edit" ng-if="hdrctr.hdrvars.authenticated">
+                <div class="text-edit" ng-show="hdrctr.hdrvars.authenticated">
                     <div class="pull-right" mean-token-editable></div>
                     <div class="pull-right" mean-translate></div>
                 </div>
-                <ul class="navbar-nav nav auth-link" ng-if="!hdrctr.hdrvars.authenticated && shifted.isShifted()">
+                <ul class="navbar-nav nav auth-link" ng-show="!hdrctr.hdrvars.authenticated">
                     <!--
-                    <li><a ui-sref='auth.register'>Join</a></li>
+                    <li><a ui-sref='auth.register'>Register</a></li>
                     <li class="divider-vertical"></li>
                     -->
-                    <li><a ui-sref='auth.login'>Operator Login</a></li>
+                    <li><a ui-sref='auth.login'>Login</a></li>
                 </ul>
-                <ul class="navbar-nav nav" ng-if="hdrctr.hdrvars.authenticated">
-                    <li class="uib-dropdown" uib-dropdown on-toggle="toggled(open)">
-                        <a href="#" class="uib-dropdown-toggle" uib-dropdown-toggle>
+                <ul class="navbar-nav nav" ng-show="hdrctr.hdrvars.authenticated">
+                    <li class="dropdown" dropdown on-toggle="toggled(open)">
+                        <a href="#" class="dropdown-toggle" dropdown-toggle>
                             <span>{{hdrctr.hdrvars.user.name}}</span> <b class="caret"></b>
                         </a>
-                        <ul class="uib-dropdown-menu">
+                        <ul class="dropdown-menu">
                             <li><a href="#" ng-click="hdrctr.logout()">Log Out</a></li>
                         </ul>
                     </li>

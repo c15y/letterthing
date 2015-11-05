@@ -5,7 +5,7 @@
     <div class="alert alert-danger animated fadeIn" ng-show="reg.usernameError">{{reg.usernameError}}</div>
     <div class="alert alert-danger animated fadeIn" ng-show="reg.emailError">{{reg.emailError}}</div>
     <form id="register_form" ng-submit="reg.register()">
-        <h2>Sign Up</h2>
+        <h2>Register</h2>
 
         <div class="input-wrapper">
             <input required id="name" type="text" name="name" placeholder="Full Name"
@@ -55,9 +55,9 @@
         </div>
 
         <div class="button_register">
-            <button type="submit" class="submit_button">Sign up</button>
+            <button type="submit" class="submit_button">Register</button>
             <p>Already have an account?</p>
-            <a ui-sref='auth.login'>Log in</a>
+            <a ui-sref='auth.login'>Login</a>
         </div>
         <!--
         <div class="woman_ninja_bottom">
