@@ -58,13 +58,13 @@ angular.module('mean.system').config(['$meanStateProvider', '$urlRouterProvider'
 
     $meanStateProvider
     .state('screen', {
-      url: '/screen/{screen:[a-f\\d]\{24\}}',
+      url: '/screen/{screenId:[a-f\\d]\{24\}}',
       templateUrl: 'system/views/index.html'
     });
 
     $meanStateProvider
     .state('letter', {
-      url: '/letter/{letter:[a-f\\d]\{24\}}',
+      url: '/letter/{letterId:[a-f\\d]\{24\}}',
       templateUrl: 'system/views/index.html'
     });
 
