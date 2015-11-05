@@ -57,6 +57,18 @@ angular.module('mean.system').config(['$meanStateProvider', '$urlRouterProvider'
     });
 
     $meanStateProvider
+    .state('send', {
+      url: '/',
+      templateUrl: 'system/views/index.html'
+    });
+
+    $meanStateProvider
+    .state('upload', {
+      url: '/',
+      templateUrl: 'system/views/index.html'
+    });
+
+    $meanStateProvider
     .state('screen', {
       url: '/screen/{screenId:[a-f\\d]\{24\}}',
       templateUrl: 'system/views/index.html'

@@ -39,18 +39,18 @@ SystemPackage.register(function(app, auth, database, circles) {
 
   SystemPackage.menus.add({
     title: 'Mail a Letter',
-    link: 'home',
+    link: 'send',
     roles: ['anonymous', 'authenticated'],
     menu: 'main'
   });
-/*
+
   SystemPackage.menus.add({
     title: 'Upload a Letter',
-    link: 'home',
-    roles: ['operator', 'admin'],
+    link: 'upload',
+    roles: ['operator'],
     menu: 'main'
   });
-*/
+
   SystemPackage.menus.add({
     title: 'Log Out',
     link: 'Log Out',
