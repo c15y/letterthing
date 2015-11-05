@@ -38,12 +38,24 @@ SystemPackage.register(function(app, auth, database, circles) {
   app.useStatic(__dirname + '/public/assets/static');
 
   SystemPackage.menus.add({
+    title: 'Mail a Letter',
+    link: 'home',
+    menu: 'main'
+  });
+/*
+  SystemPackage.menus.add({
+    title: 'Upload a Letter',
+    link: 'home',
+    roles: ['operator', 'admin'],
+    menu: 'main'
+  });
+*/
+  SystemPackage.menus.add({
     title: 'Log Out',
     link: 'Log Out',
     roles: ['authenticated'],
     menu: 'account'
   });
-
 
   return SystemPackage;
 
