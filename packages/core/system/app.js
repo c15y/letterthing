@@ -40,6 +40,7 @@ SystemPackage.register(function(app, auth, database, circles) {
   SystemPackage.menus.add({
     title: 'Mail a Letter',
     link: 'home',
+    roles: ['anonymous', 'authenticated'],
     menu: 'main'
   });
 /*
