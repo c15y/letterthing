@@ -112,8 +112,15 @@ app.controller('IndexController', ['$scope', 'Global', '$location', '$state', '$
             $scope.letters = [ letter ];
           }
           $scope.letter = letter;
+          $state.go('home');
+        }).catch(function(err) {
+          $state.go('home');
         });
     };
+
+    if ($state.is('upload')) {
+      $scope.uploadLetter();
+    }
   }
 ]);
 
