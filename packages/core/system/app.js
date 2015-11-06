@@ -38,7 +38,7 @@ SystemPackage.register(function(app, auth, database, circles) {
   app.useStatic(__dirname + '/public/assets/static');
 
   SystemPackage.menus.add({
-    title: 'Mail a Letter',
+    title: 'Send a Letter',
     link: 'send',
     roles: ['anonymous', 'authenticated'],
     menu: 'main'
