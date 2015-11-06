@@ -85,7 +85,6 @@ app.controller('IndexController', ['$scope', 'Global', '$location', '$state', '$
 
     $scope.letters = undefined;
     $scope.letter = {};
-    focus('searchField');
 
     // Clear the selected letter
     $scope.clearLetter = function() {
@@ -121,6 +120,8 @@ app.controller('IndexController', ['$scope', 'Global', '$location', '$state', '$
     if ($state.is('upload')) {
       $scope.uploadLetter();
     }
+
+    focus('personField');
   }
 ]);
 
