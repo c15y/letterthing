@@ -57,13 +57,19 @@ angular.module('mean.system').config(['$meanStateProvider', '$urlRouterProvider'
     });
 
     $meanStateProvider
-    .state('send', {
+    .state('write', {
       url: '/',
       templateUrl: 'system/views/index.html'
     });
 
     $meanStateProvider
     .state('upload', {
+      url: '/',
+      templateUrl: 'system/views/index.html'
+    });
+
+    $meanStateProvider
+    .state('mail', {
       url: '/',
       templateUrl: 'system/views/index.html'
     });

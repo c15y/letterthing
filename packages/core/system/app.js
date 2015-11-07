@@ -38,8 +38,8 @@ SystemPackage.register(function(app, auth, database, circles) {
   app.useStatic(__dirname + '/public/assets/static');
 
   SystemPackage.menus.add({
-    title: 'Send a Letter',
-    link: 'send',
+    title: 'Write a Letter',
+    link: 'write',
     roles: ['anonymous', 'authenticated'],
     menu: 'main'
   });
@@ -47,6 +47,13 @@ SystemPackage.register(function(app, auth, database, circles) {
   SystemPackage.menus.add({
     title: 'Upload a Letter',
     link: 'upload',
+    roles: ['operator'],
+    menu: 'main'
+  });
+
+  SystemPackage.menus.add({
+    title: 'Mail a Letter',
+    link: 'mail',
     roles: ['operator'],
     menu: 'main'
   });
