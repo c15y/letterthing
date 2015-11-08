@@ -29,8 +29,7 @@ var LetterSchema = new Schema({
   accounting: {
     type: {
       checks: [{ cents: Number, image: Schema.Types.ObjectId }],
-      stamps: Number,
-      epayments: [{ cents: Number, ref: String }]
+      stamps: Number
     }, access: 'protected'
   },
 

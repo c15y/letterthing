@@ -14,7 +14,8 @@ var PersonSchema = new Schema({
     type: [{
       label: String,
       key: { type: String, match: KeyRegEx },
-      cents: Number
+      cents: Number,
+      stamps: Number
     }], required: true }
 });
 
