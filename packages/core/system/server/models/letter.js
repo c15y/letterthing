@@ -15,10 +15,10 @@ var Page = {
 };
 
 var LetterSchema = new Schema({
-  person: { type: Schema.Types.ObjectId, required: true },
-  mailbox: { type: Schema.Types.ObjectId, required: true },
+  writer: { type: Schema.Types.ObjectId, required: true, ref: 'Writer' },
+  mailbox: { type: Schema.Types.ObjectId, required: true, ref: 'Mailbox' },
   direction: { type: String, enum: ['incoming', 'outgoing'], required: true },
-  operator: { type: Schema.Types.ObjectId, required: true },
+  operator: { type: Schema.Types.ObjectId, required: true, ref: 'User' },
 
   tags: [ String ],
   screen: { type: Schema.Types.ObjectId, required: true },
@@ -29,14 +29,14 @@ var LetterSchema = new Schema({
   accounting: {
     type: {
       checks: [{ cents: Number, image: Schema.Types.ObjectId }],
-      stamps: Number
+      stamps: Number,
+      settled: Date
     }, access: 'protected'
   },
 
   flow: {
     created: { type: Date, default: Date.now, required: true },
     rendered: { type: Date, required: true },
-    settled: Date,
     handled: Date,
     mailed: Date
   },
