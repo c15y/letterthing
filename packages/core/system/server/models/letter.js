@@ -8,7 +8,7 @@ var Page = {
  text: {
    template: String,
    collab: [{
-     user: Schema.Types.ObjectId,  // TODO: User or system process
+     user: Schema.Types.ObjectId,
      data: Object
    }]
  }
