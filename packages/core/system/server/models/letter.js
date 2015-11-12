@@ -21,7 +21,7 @@ var LetterSchema = new Schema({
   operator: { type: Schema.Types.ObjectId, required: true, ref: 'User' },
 
   tags: [ String ],
-  screen: { type: Schema.Types.ObjectId, required: true },
+  seal: Schema.Types.ObjectId,
   envelope: [Page],
   cover: { type: [Page], access: 'protected' },
   content: [Page],
