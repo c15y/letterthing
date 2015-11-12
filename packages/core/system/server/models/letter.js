@@ -8,7 +8,7 @@ var Page = {
  text: {
    template: String,
    collab: [{
-     user: Schema.Types.ObjectId,
+     user: { type: Schema.Types.ObjectId, ref: 'User' },
      data: Object
    }]
  }
